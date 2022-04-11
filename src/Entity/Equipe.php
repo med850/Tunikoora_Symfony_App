@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Equipe
@@ -23,15 +24,30 @@ class Equipe
 
     /**
      * @var string
+     * @Assert\NotBlank(message="Champ vide")
+     * @Assert\NotNull(message=" nom doit etre non vide")
+     * @Assert\Length(
+     *      min = 2,
+     *      minMessage=" Entrer un nom au mini de 2 caracteres"
      *
+     *     )
+     * 
      * @ORM\Column(name="nom", type="string", length=30, nullable=false)
      */
     private $nom;
 
     /**
-     * @var int|null
+     * @var int
+     * @Assert\Positive
+     * @Assert\NotBlank(message="classement doit etre non vide")
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 25,
+     *      minMessage = "doit etre >=1 ",
+     *      maxMessage = "doit etre <=25" )
+     * 
      *
-     * @ORM\Column(name="classement", type="integer", nullable=true)
+     * @ORM\Column(name="classement", type="integer", nullable=false)
      */
     private $classement;
 

@@ -1,0 +1,50 @@
+{% extends 'admin/NavDash.html.twig' %}
+
+
+{% block body %}
+
+    <div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+        <div class="col-lg-6">
+
+            <div class="card">
+                <div class="card-body">
+                    <a href="{{ path('display_equipe') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+                    <h5 class="card-title">Liste des equipes</h5>
+
+                    <!-- Table with stripped rows -->
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>     <th>Nom</th>
+                            <th>Classement</th>
+                            
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in equipe %}
+                            <tr>
+                                <td>{{ a.nom }}</td>
+                                <td>{{ a.classement }}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="{{ path('modifEquipe',{'id':a.id}) }}">Modifier</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" href="{{ path('supp_equipe',{'id':a.id}) }}">Supprimer</a>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                    <!-- End small tables -->
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+{% endblock %}
