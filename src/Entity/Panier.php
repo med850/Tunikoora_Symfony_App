@@ -41,5 +41,34 @@ class Panier
      */
     private $user;
 
+    public function getIdpanier(): ?int
+    {
+        return $this->idpanier;
+    }
+
+    public function getProduit(): ?Ticket
+    {
+        return $this->produit;
+    }
+
+    public function setProduit(?Ticket $produit): self
+    {
+        $this->produit = $produit;
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
 
 }

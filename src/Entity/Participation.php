@@ -41,5 +41,34 @@ class Participation
      */
     private $match;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getEquipe(): ?Equipe
+    {
+        return $this->equipe;
+    }
+
+    public function setEquipe(?Equipe $equipe): self
+    {
+        $this->equipe = $equipe;
+
+        return $this;
+    }
+
+    public function getMatch(): ?Matchtb
+    {
+        return $this->match;
+    }
+
+    public function setMatch(?Matchtb $match): self
+    {
+        $this->match = $match;
+
+        return $this;
+    }
+
 
 }
