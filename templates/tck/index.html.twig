@@ -1,0 +1,43 @@
+{% extends 'home/index.html.twig' %}
+
+{% block title %}Ticket index{% endblock %}
+
+{% block body %}
+    <h1>Ticket index</h1>
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+
+                <table border="1">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Equipea</th>
+                <th>Equipeb</th>
+                <th>Prix</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.id }}</td>
+                <td>{{ ticket.equipea }}</td>
+                <td>{{ ticket.equipeb }}</td>
+                <td>{{ ticket.prix }} DT</td>
+                <td>
+                    <a class="btn btn-success" href="{{ path('app_tck_show', {'id': ticket.id}) }}">show</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
