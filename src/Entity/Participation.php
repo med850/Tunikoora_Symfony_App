@@ -22,16 +22,6 @@ class Participation
     private $id;
 
     /**
-     * @var \Equipe
-     *
-     * @ORM\ManyToOne(targetEntity="Equipe")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="equipe_id", referencedColumnName="id")
-     * })
-     */
-    private $equipe;
-
-    /**
      * @var \Matchtb
      *
      * @ORM\ManyToOne(targetEntity="Matchtb")
@@ -41,11 +31,25 @@ class Participation
      */
     private $match;
 
+<<<<<<< HEAD
+=======
+    /**
+     * @var \Equipe
+     *
+     * @ORM\ManyToOne(targetEntity="Equipe")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="equipe_id", referencedColumnName="id")
+     * })
+     */
+    private $equipe;
+
+>>>>>>> bddbe57af83d20bd1d4b7333a95e8d512581cf11
     public function getId(): ?int
     {
         return $this->id;
     }
 
+<<<<<<< HEAD
     public function getEquipe(): ?Equipe
     {
         return $this->equipe;
@@ -58,6 +62,8 @@ class Participation
         return $this;
     }
 
+=======
+>>>>>>> bddbe57af83d20bd1d4b7333a95e8d512581cf11
     public function getMatch(): ?Matchtb
     {
         return $this->match;
@@ -70,5 +76,20 @@ class Participation
         return $this;
     }
 
+<<<<<<< HEAD
+=======
+    public function getEquipe(): ?Equipe
+    {
+        return $this->equipe;
+    }
+
+    public function setEquipe(?Equipe $equipe): self
+    {
+        $this->equipe = $equipe;
+
+        return $this;
+    }
+
+>>>>>>> bddbe57af83d20bd1d4b7333a95e8d512581cf11
 
 }

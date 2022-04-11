@@ -107,9 +107,11 @@ class ArticleController extends AbstractController
      */
     public function displayArticleFront(): Response
     {
-        $articles = $this->getDoctrine()->getRepository(article::class)->findBy([],['titre' => 'desc']);
-        return $this->render('article/test.html.twig', [
-            'articles' => $articles,
+        $articles = $this->getDoctrine()->getManager()->getRepository(Article::class)->findAll();
+        return $this->render('article/displayArticleFront.html.twig', [
+            'articles'=>$articles
         ]);
     }
+
+
 }
