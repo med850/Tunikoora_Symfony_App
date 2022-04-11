@@ -41,5 +41,34 @@ class LigneCommandeTicket
      */
     private $idTicket;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getIdLivraison(): ?Livraison
+    {
+        return $this->idLivraison;
+    }
+
+    public function setIdLivraison(?Livraison $idLivraison): self
+    {
+        $this->idLivraison = $idLivraison;
+
+        return $this;
+    }
+
+    public function getIdTicket(): ?Ticket
+    {
+        return $this->idTicket;
+    }
+
+    public function setIdTicket(?Ticket $idTicket): self
+    {
+        $this->idTicket = $idTicket;
+
+        return $this;
+    }
+
 
 }

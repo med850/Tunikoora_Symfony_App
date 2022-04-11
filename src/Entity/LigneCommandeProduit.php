@@ -22,6 +22,16 @@ class LigneCommandeProduit
     private $id;
 
     /**
+     * @var \Livraison
+     *
+     * @ORM\ManyToOne(targetEntity="Livraison")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_livraison", referencedColumnName="id")
+     * })
+     */
+    private $idLivraison;
+
+    /**
      * @var \Produit
      *
      * @ORM\ManyToOne(targetEntity="Produit")
@@ -31,15 +41,34 @@ class LigneCommandeProduit
      */
     private $idProduit;
 
-    /**
-     * @var \Livraison
-     *
-     * @ORM\ManyToOne(targetEntity="Livraison")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_livraison", referencedColumnName="id")
-     * })
-     */
-    private $idLivraison;
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getIdLivraison(): ?Livraison
+    {
+        return $this->idLivraison;
+    }
+
+    public function setIdLivraison(?Livraison $idLivraison): self
+    {
+        $this->idLivraison = $idLivraison;
+
+        return $this;
+    }
+
+    public function getIdProduit(): ?Produit
+    {
+        return $this->idProduit;
+    }
+
+    public function setIdProduit(?Produit $idProduit): self
+    {
+        $this->idProduit = $idProduit;
+
+        return $this;
+    }
 
 
 }

@@ -22,6 +22,16 @@ class Panier
     private $idpanier;
 
     /**
+     * @var \Users
+     *
+     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $user;
+
+    /**
      * @var \Ticket
      *
      * @ORM\ManyToOne(targetEntity="Ticket")
@@ -31,15 +41,34 @@ class Panier
      */
     private $produit;
 
-    /**
-     * @var \Users
-     *
-     * @ORM\ManyToOne(targetEntity="Users")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * })
-     */
-    private $user;
+    public function getIdpanier(): ?int
+    {
+        return $this->idpanier;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getProduit(): ?Ticket
+    {
+        return $this->produit;
+    }
+
+    public function setProduit(?Ticket $produit): self
+    {
+        $this->produit = $produit;
+
+        return $this;
+    }
 
 
 }

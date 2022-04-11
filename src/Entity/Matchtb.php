@@ -42,5 +42,46 @@ class Matchtb
      */
     private $tour;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getLocalisation(): ?string
+    {
+        return $this->localisation;
+    }
+
+    public function setLocalisation(string $localisation): self
+    {
+        $this->localisation = $localisation;
+
+        return $this;
+    }
+
+    public function getArbitreprincipale(): ?string
+    {
+        return $this->arbitreprincipale;
+    }
+
+    public function setArbitreprincipale(string $arbitreprincipale): self
+    {
+        $this->arbitreprincipale = $arbitreprincipale;
+
+        return $this;
+    }
+
+    public function getTour(): ?string
+    {
+        return $this->tour;
+    }
+
+    public function setTour(string $tour): self
+    {
+        $this->tour = $tour;
+
+        return $this;
+    }
+
 
 }

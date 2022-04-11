@@ -62,5 +62,70 @@ class Ticket
      */
     private $user;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getEquipea(): ?string
+    {
+        return $this->equipea;
+    }
+
+    public function setEquipea(string $equipea): self
+    {
+        $this->equipea = $equipea;
+
+        return $this;
+    }
+
+    public function getEquipeb(): ?string
+    {
+        return $this->equipeb;
+    }
+
+    public function setEquipeb(string $equipeb): self
+    {
+        $this->equipeb = $equipeb;
+
+        return $this;
+    }
+
+    public function getPrix(): ?int
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(int $prix): self
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getMatch(): ?Matchtb
+    {
+        return $this->match;
+    }
+
+    public function setMatch(?Matchtb $match): self
+    {
+        $this->match = $match;
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
 
 }
