@@ -15,7 +15,7 @@ class Ticket1Type extends AbstractType
             ->add('equipea')
             ->add('equipeb')
             ->add('prix')
-           // ->add('match')
+            //->add('match')
             //->add('user')
         ;
     }

@@ -3,9 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Produit;
+use App\Entity\Users;
+use Doctrine\DBAL\Types\FloatType;
+use Doctrine\DBAL\Types\IntegerType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,8 +29,10 @@ class ProduitType extends AbstractType
                 'multiple'=>true,
                 'mapped'=> false,
                 'required'=>false])
-          //  ->add('user')
+         //   ->add('user' )
 
+
+            //->add('user')
         ;
     }
 
