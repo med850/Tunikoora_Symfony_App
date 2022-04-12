@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,7 +24,10 @@ class Review
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="commentaire doit etre non vide")
+     * @Assert\Length(
+     *      max = 50,
+     *      maxMessage = "doit etre <=100" )
      * @ORM\Column(name="commentaire", type="text", length=65535, nullable=false)
      */
     private $commentaire;

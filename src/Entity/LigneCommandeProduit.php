@@ -31,8 +31,6 @@ class LigneCommandeProduit
      */
     private $idLivraison;
 
-<<<<<<< HEAD
-=======
     /**
      * @var \Produit
      *
@@ -43,13 +41,11 @@ class LigneCommandeProduit
      */
     private $idProduit;
 
->>>>>>> bddbe57af83d20bd1d4b7333a95e8d512581cf11
     public function getId(): ?int
     {
         return $this->id;
     }
 
-<<<<<<< HEAD
     public function getIdProduit(): ?Produit
     {
         return $this->idProduit;
@@ -62,8 +58,7 @@ class LigneCommandeProduit
         return $this;
     }
 
-=======
->>>>>>> bddbe57af83d20bd1d4b7333a95e8d512581cf11
+
     public function getIdLivraison(): ?Livraison
     {
         return $this->idLivraison;
@@ -76,20 +71,5 @@ class LigneCommandeProduit
         return $this;
     }
 
-<<<<<<< HEAD
-=======
-    public function getIdProduit(): ?Produit
-    {
-        return $this->idProduit;
-    }
-
-    public function setIdProduit(?Produit $idProduit): self
-    {
-        $this->idProduit = $idProduit;
-
-        return $this;
-    }
-
->>>>>>> bddbe57af83d20bd1d4b7333a95e8d512581cf11
 
 }

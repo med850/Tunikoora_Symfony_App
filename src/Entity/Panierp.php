@@ -31,8 +31,6 @@ class Panierp
      */
     private $user;
 
-<<<<<<< HEAD
-=======
     /**
      * @var \Produit
      *
@@ -43,13 +41,12 @@ class Panierp
      */
     private $produit;
 
->>>>>>> bddbe57af83d20bd1d4b7333a95e8d512581cf11
     public function getIdpanier(): ?int
     {
         return $this->idpanier;
     }
 
-<<<<<<< HEAD
+
     public function getProduit(): ?Produit
     {
         return $this->produit;
@@ -62,8 +59,7 @@ class Panierp
         return $this;
     }
 
-=======
->>>>>>> bddbe57af83d20bd1d4b7333a95e8d512581cf11
+
     public function getUser(): ?Users
     {
         return $this->user;
@@ -76,20 +72,7 @@ class Panierp
         return $this;
     }
 
-<<<<<<< HEAD
-=======
-    public function getProduit(): ?Produit
-    {
-        return $this->produit;
-    }
 
-    public function setProduit(?Produit $produit): self
-    {
-        $this->produit = $produit;
 
-        return $this;
-    }
-
->>>>>>> bddbe57af83d20bd1d4b7333a95e8d512581cf11
 
 }

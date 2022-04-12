@@ -51,7 +51,7 @@
             <div class="d-flex align-items-center">
                 <div class="site-logo">
                     <a href="index.html">
-                       <!-- <img src="{{asset("adminAssets/img/tunikoora.png")}}" alt="Logo">-->
+                        <!-- <img src="{{asset("adminAssets/img/tunikoora.png")}}" alt="Logo">-->
                     </a>
                 </div>
                 <div class="ml-auto">
@@ -79,31 +79,21 @@
                 <div class="col-lg-6">
                     <div >
                         <div >
-                            <h3>Liste des articles</h3>
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th style="color: #EEEEEE">Titre</th>
-                            <th style="color: #EEEEEE">Description</th>
-                            <th style="color: #EEEEEE">Image</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for a in articles %}
-                            <tr>
-                                <td style="color: #EEEEEE">{{ a.titre }}</td>
-                                <td style="color: #EEEEEE">{{ a.description }}</td>
-                                <td style="color: #EEEEEE"><img src="{{asset('/adminAssets/img/')~ a.image  }}" alt="" style="width: 200px; height: 150px"></td>
-                                <td style="color: #EEEEEE"><a class="btn btn-outline-secondary" href="{{ path("displayReviewFront")}}" >View</a></td>
-
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                            <h3 >Liste des commentaires</h3>
+                            {{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+                            <div class="form-group">
+                                <label style="color: #EEEEEE">Commentaire</label>
+                                {{ form_widget(form.commentaire,{'attr':{'class':'form-control'}}) }}
+                                {{ form_errors(form.commentaire,{'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="card-footer">
+                                {{ form_widget(form.ajouter,{'attr':{'class':'btn btn-primary'}}) }}
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
         </div>
     </div>
 

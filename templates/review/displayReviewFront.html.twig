@@ -51,7 +51,7 @@
             <div class="d-flex align-items-center">
                 <div class="site-logo">
                     <a href="index.html">
-                       <!-- <img src="{{asset("adminAssets/img/tunikoora.png")}}" alt="Logo">-->
+                        <!-- <img src="{{asset("adminAssets/img/tunikoora.png")}}" alt="Logo">-->
                     </a>
                 </div>
                 <div class="ml-auto">
@@ -80,35 +80,45 @@
                     <div >
                         <div >
                             <h3>Liste des articles</h3>
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th style="color: #EEEEEE">Titre</th>
-                            <th style="color: #EEEEEE">Description</th>
-                            <th style="color: #EEEEEE">Image</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for a in articles %}
-                            <tr>
-                                <td style="color: #EEEEEE">{{ a.titre }}</td>
-                                <td style="color: #EEEEEE">{{ a.description }}</td>
-                                <td style="color: #EEEEEE"><img src="{{asset('/adminAssets/img/')~ a.image  }}" alt="" style="width: 200px; height: 150px"></td>
-                                <td style="color: #EEEEEE"><a class="btn btn-outline-secondary" href="{{ path("displayReviewFront")}}" >View</a></td>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th style="color: #EEEEEE">Titre</th>
+                                    <th style="color: #EEEEEE">Description</th>
+                                    <th style="color: #EEEEEE">Image</th>
+                                </tr>
+                                <tr>
+                                    <th style="color: #EEEEEE">Commentaire</th>
+                                    <th style="color: #EEEEEE">Modifier</th>
+                                    <th style="color: #EEEEEE">Supprimer</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                                {% for a in articles %}
+                                    <tr>
+                                        <td style="color: #EEEEEE">{{ a.titre }}</td>
+                                        <td style="color: #EEEEEE">{{ a.description }}</td>
+                                        <td style="color: #EEEEEE"><img src="{{asset('/adminAssets/img/')~ a.image  }}" alt="" style="width: 200px; height: 150px"></td>
+                                    </tr>
+                                {% endfor %}
+                                {% for r in reviews %}
+                                    <tr>
+                                        <td style="color: #EEEEEE">{{ r.commentaire }}</td>
+                                        <td style="color: #EEEEEE"><a class="btn btn-primary" href="{{ path('modifReview',{'id':r.id}) }}">Modifier</a></td>
+                                        <td style="color: #EEEEEE"><a class="btn btn-primary" href="{{ path("supp_reviewFront",{'id':r.id})}}" >Supprimer</a></td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                            <td style="color: #EEEEEE"><a class="btn btn-primary" href="{{ path("addReview")}}" >Ajouter votre commentaire</a></td>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-        </div>
-    </div>
-
-
-
 
     <footer class="footer-section">
         <div class="container">
