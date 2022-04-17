@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Users;
 use App\Form\EditUserType;
+use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,7 +37,7 @@ class AdminController extends AbstractController
      /**
      * @Route("admin/login", name="security_login_admin")
      */
-    public function connexionAdmin(Request $request)
+  /*  public function connexionAdmin(Request $request)
     { 
 
        
@@ -45,7 +48,7 @@ class AdminController extends AbstractController
          }
         
     }
-
+*/
 
 
 
@@ -54,10 +57,15 @@ class AdminController extends AbstractController
         /**
      * @Route("/admin", name="app_dashboard")
      */
-    public function index(): Response
+   public function index(UsersRepository $repository): Response
     {
+        
+      
+      //  $count = $repository->countUsers();
+
+
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+            
         ]);
     }
 
@@ -66,48 +74,100 @@ class AdminController extends AbstractController
     /**
      * @Route("admin/utilisateurs", name="utilisateurs")
      */
-    public function userList(){
+    public function userList(PaginatorInterface $paginator, Request $request){
 
-        $users = $this->getDoctrine()->getRepository(Users::class)->findAll();
+        $users = $paginator->paginate($this->getDoctrine()->getRepository(Users::class)->findAll(),
+        $request->query->getInt('page', 1),
+        5
+    );
 
         
-
         return $this->render('admin/users.html.twig', [
           
             'users'=>$users
         ]);
+    
     }
 
 
-    #[IsGranted('ROLE_ADMIN')]
+   
       /**
-     * @Route("utilisateurs/modifier/{id}", name="modify_user")
+     * @Route("admin/utilisateurs/modifier/{id}", name="modify_user")
      */
-    public function editUser(Users $user, Request $request){
+    public function editUser( Request $request, int $id, FlashyNotifier $flashyNotifier){
 
+     
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $user = $entityManager->getRepository(Users::class)->find($id);
         $form = $this->createForm(EditUserType::class, $user);
-        $form->handleRequest($request);  
-        if($form->isSubmitted() && $form->isValid()){
-            $entityManager = $this->getDoctrine()->getManager();
+        $form->handleRequest($request);
+    
+       // dd($user);
+       if($form->isSubmitted() && $form->isValid())
+        {   
             $entityManager->persist($user);
             $entityManager->flush();
-                    
-           return $this -> redirectToRoute("app_dashboard");
-        }
+            $flashyNotifier->success('Utilisateur modifié avec succée');
 
+            return $this -> redirectToRoute("utilisateurs");
+        }
+    
         return $this->render('admin/editUser.html.twig', [
             'userForm'=>$form->createView()
         ]);
 
-    
-
     }
 
   
+    /**
+ * @Route("admin/utilisateurs/supp/{id}", name="delete_user")
+ */
+public function deleteProduct(int $id, FlashyNotifier $flashyNotifier): Response
+{
+    $entityManager = $this->getDoctrine()->getManager();
+    $user = $entityManager->getRepository(Users::class)->find($id);
+    $entityManager->remove($user);
+    $entityManager->flush();
+    $flashyNotifier->error('Utilisateur supprimé');
+
+    return $this->redirectToRoute("utilisateurs");
+}
 
 
 
 
+            /**
+             * @Route("admin/utilisateurs/orderName", name="order_by_name")
+             */
 
+        function orderByName(UsersRepository $repository, PaginatorInterface $paginator, Request $request){
+
+        $users = $paginator->paginate($repository->orderByName(),
+        $request->query->getInt('page', 1),
+        5
+        );
+
+            
+            return $this->render('admin/users.html.twig',[
+                'users' => $users ]);
+
+
+        }
+
+
+
+    
+
+        function userSearch(Request $request, UsersRepository $repository){
+
+            $users = $this->getDoctrine()->getRepository(Users::class)->findAll();
+            $studentsByMail = $repository->orderByMail();
+          //  $searchForm = $this->createForm(SearchStudentType::class);
+
+
+
+        }
 
 }

@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 * @ORM\Table(name="users")
 * @ORM\Entity
 * @UniqueEntity(fields={"email"}, message="Email exist déjà")
+*@ORM\Entity(repositoryClass="App\Repository\UsersRepository")
 */
 class Users implements UserInterface
 {
@@ -66,18 +67,12 @@ private $email;
 * @var string
 *
 * @ORM\Column(name="password", type="text", length=30, nullable=false)
-* @Assert\Length(min = 8, minMessage = "Le mot de passe doit faire minimum 8 caractère ")
-* @Assert\EqualTo(propertyPath="repeatpassword", message="Mot de passe non compatible")
-* @Assert\NotBlank(message="Champ vide")
 */
 private $password;
 /**
 * @var string
 *
 * @ORM\Column(name="repeatPassword", type="text", length=30, nullable=false)
-* @Assert\Length(min = 8, minMessage = "Le mot de passe doit faire minimum 8 caractère ")
-* @Assert\EqualTo(propertyPath="password", message="Confirmation non compatible avec le mot de passe")
-* @Assert\NotBlank(message="Champ vide")
 */
 private $repeatpassword;
 /**
@@ -91,9 +86,10 @@ private $typeuser;
 */
 private $username;
 /**
-* @ORM\Column(type="array")
+* @ORM\Column(type="json")
 */
 private $roles = [];
+
 
 
 public function getId(): ?int
@@ -188,6 +184,7 @@ public function setRoles(array $roles){
 $this->roles=$roles;
 return $this;
 }
+
 
 
 }
