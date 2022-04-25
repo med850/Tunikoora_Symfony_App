@@ -1,0 +1,114 @@
+{% extends 'admin/NavDash.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+             
+
+
+
+ <div class="hero overlay" style="background-image: url('images/bg_3.jpg');">
+  
+    </div>
+
+    
+    <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <div class="container">
+              {% for message in app.flashes('message') %}
+            <div class="alert alert-info">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+      <div class="row">
+        <div class="col-lg-12">
+          
+      
+        </div>
+      </div>
+    </div>
+  <div class="row bg-dark">
+  <div class="col-lg-2"></div>
+          <div class="col-lg-8  bg-dark matchtb_form">
+          {{form_start(form,{attr:{novalidate:'novalidate'}})}}
+            {{form_label(form.localisation)}}
+            {{form_widget(form.localisation)}}
+            {{form_errors(form.localisation,{'att':{'class':'text-danger'}})}}
+
+            {{form_label(form.arbitreprincipale)}}
+            {{form_widget(form.arbitreprincipale)}}
+            {{form_errors(form.arbitreprincipale,{'att':{'class':'text-danger'}})}}
+
+
+            {{form_label(form.tour)}}
+            {{form_widget(form.tour)}}
+            {{form_errors(form.tour,{'att':{'class':'text-danger'}})}}
+
+
+
+          <div class="">
+          <button type="submit" class="btn btn-primary" >submit</button>
+          </div>
+          {{form_end(form)}}
+          </div>
+        </div>
+ 
+
+        <div class="site-section bg-dark">
+      <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+          <div class="col-lg-8">
+            
+            <div class="widget-next-match">
+              <table class="table custom-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Localisation</th>
+                    <th>Arbitre Principal</th>
+                    <th>Tour</th>
+                    <th>edit</th>
+                    <th>delete<th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                {% for m in matches %}
+                  <tr>
+                   <td><strong class="text-white">{{m.id}}</strong></td>
+
+                    <td>{{m.localisation}}</td>
+                    <td>{{m.arbitreprincipale}}</td>
+                    <td>{{m.tour}}</td>
+                    <td><a  href="{{ path('matchtb_update',{'id': m.id}) }}" class="btn" >edit</a></td>
+                    <td><a  href="{{ path('matchtb_delete',{'id': m.id}) }}" class="btn" >delete</a></td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="row">
+        <div class="col-lg-6">
+     <center>          <a href="/participation" class="nav-link">participation</a></center>
+
+            </div>
+    </div>
+    </div>
+ 
+   
+
+{% endblock %}
+{% block style %}
+  <link rel="stylesheet" href="{{asset("assets/css/matchtb.css")}}">
+
+{% endblock %}
+

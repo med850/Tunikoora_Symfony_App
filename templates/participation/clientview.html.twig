@@ -1,0 +1,169 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ParticipationController!{% endblock %}
+
+{% block body %}
+<!--<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>-->
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+<div class="example-wrapper">
+<div id="map"></div>
+</div>
+
+  <div class="widget-next-match">
+              <table class="table custom-table">
+                <thead>
+                  <tr>
+                    <th>matchId</th>
+                    <th>Equipe1</th>
+                    <th>equipe2</th>
+                    <th>date</th>
+                    <th>...</th>
+                </tr>
+                 
+                </thead>
+                <tbody>
+                {% for p in participations %}
+                <br>
+
+                                {% if p.date|date("Y-m-d") == "now"|date("Y-m-d")  %}
+                                  <tr style="background:red">
+                {% elseif  p.date|date("Y-m-d") < "now"|date("Y-m-d") %}
+                  <tr style="background:#1AB7EA">  
+                {% else %}
+                <tr style="background:cyan">  
+
+                {% endif %} 
+       
+                <td>{{p.match.tour}}</td>
+                <td>{{p.equipe.nom}}</td>
+                                <td>{{p.equipe2.nom}}</td>
+                <td>{{p.date|date("m/d/Y")}}</td>
+
+                
+                <td><button class="btn" onClick="details({{parts}},{{p.id}})" data-toggle="modal"  data-target="#myModal">details</button></td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                  <input type="hidden" id="array" value="{{ participations|json_encode() }}">
+
+<!--                  <button type="button" class="btn" data-toggle="modal" data-target="#myModal">Test</button>
+-->
+ <!-- Modal -->
+  <div class="modal fade " id="myModal" role="dialog">
+    <div class="modal-dialog modal-xl">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Match</h4>
+        </div>
+        <div class="modal-body">
+                    <div class="col-lg-9">
+            <div class="widget-next-match ">
+              <div class="widget-title">
+                <h3>Next Match</h3>
+              </div>
+              <div class="widget-body mb-6">
+                <div class="widget-vs">
+                  <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
+                    <div class="team-1 text-center">
+                      <img src="{{asset("assets/images/logo_1.png")}}" alt="Image">
+                      <h3 class="equipe">Football League</h3>
+                    </div>
+                    <div>
+                      <span class="vs"><span>VS</span></span>
+                    </div>
+                    <div class="team-2 text-center">
+                      <img src="{{asset("assets/images/logo_2.png")}}" alt="Image">
+                      <h3 class="equipe2">Soccer</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-center widget-vs-contents mb-4">
+                <h4 class="tour">World Cup League</h4>
+                <p class="mb-5">
+                  <span class="d-block date"></span>
+                  <span class="d-block heure"></span>
+                  <strong class="text-primary">New Euro Arena</strong>
+                </p>
+
+                <div id="date-countdown2" class="pb-1"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+         <div class="col-lg-6">
+         <span class="map"></span>
+        
+
+         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+</div>
+<script>
+let map;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 8,
+  });
+}
+
+window.initMap = initMap;
+
+function details(parts,id)
+{
+
+  console.log(parts)
+  var currentPart = parts.filter(el => el.id == id)[0]
+  console.log(currentPart)
+  console.log(parts)
+
+  $(".map").html(`<iframe
+  width="600"
+  height="450"
+  style="border:0"
+  loading="lazy"
+  allowfullscreen
+  referrerpolicy="no-referrer-when-downgrade"
+  src='https://www.google.com/maps/embed/v1/place?key=AIzaSyAdxGJpqa5_9CdQ4zUlWw2XazA96mRRxpw
+    &q=Space+Needle,${currentPart.stade.adresse}' ></iframe>`)
+  
+  $(".tour").html(currentPart.match.tour)
+  $(".equipe").html(currentPart.equipe.nom)
+  $(".equipe2").html(currentPart.equipe2.nom)
+  date = currentPart.date.split("T")[0];
+  var diffDays = parseInt((new Date(date) - new Date()) / (1000 * 60 * 60 * 24), 10); 
+console.log(diffDays)
+  console.log();
+  var msg  = diffDays + " Days left";
+  if (diffDays == 0)
+    msg = "Match is today!";
+  else if (diffDays <0)
+    msg = "Match has already been played";
+  $(".date").html(msg)
+}
+
+
+
+
+</script>
+<script src="{{asset("bundles/mercuryseriesflashy/js/flashy.js")}}">
+</script>
+{% endblock %}

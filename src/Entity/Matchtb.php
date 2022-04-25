@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use symfony\component\validator\Constraints as Assert;
+
 
 /**
  * Matchtb
@@ -21,24 +23,36 @@ class Matchtb
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="localisation", type="string", length=50, nullable=false)
+    
+     /**
+     * @Assert\NotBlank(message="localisation  doit etre non vide")
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 25,
+     *      minMessage = "doit etre >=4 ",
+     *      maxMessage = "doit etre <=25" )
+     * @ORM\Column(type="string", length=25)
      */
     private $localisation;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="arbitrePrincipale", type="string", length=50, nullable=false)
+/**
+     * @Assert\NotBlank(message="arbitrePrincipal  doit etre non vide")
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 25,
+     *      minMessage = "doit etre >=4 ",
+     *      maxMessage = "doit etre <=25" )
+     * @ORM\Column(type="string", length=25)
      */
     private $arbitreprincipale;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="tour", type="string", length=50, nullable=false)
+     * @Assert\NotBlank(message="le tour  doit etre non vide")
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 25,
+     *      minMessage = "doit etre >=4 ",
+     *      maxMessage = "doit etre <=25" )
+     * @ORM\Column(type="string", length=25)
      */
     private $tour;
 

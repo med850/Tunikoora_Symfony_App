@@ -25,6 +25,9 @@
   <link rel="stylesheet" href="{{asset("adminAssets/plugins/daterangepicker/daterangepicker.css")}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset("adminAssets/plugins/summernote/summernote-bs4.min.css")}}">
+<!--flashy -->
+      <link rel="stylesheet" href="{{asset("bundles/mercuryseriesflashy/css/flashy.css")}}">
+
 
         {% endblock %}
     </head>
@@ -865,7 +868,11 @@
 <!-- ./wrapper -->
 
 
-   
+   {% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+    {{ message }}
+    </div>
+   {% endfor %}
         {% block body %}{% endblock %}
     
    <!-- /.content-wrapper -->
@@ -912,6 +919,13 @@
 <script src="{{asset("adminAssets/js/demo.js")}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset("adminAssets/js/pages/dashboard.js")}}"></script>
+
+<script src="{{asset("bundles/mercuryseriesflashy/jd/flashy.js")}}"></script>
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdxGJpqa5_9CdQ4zUlWw2XazA96mRRxpw&callback=initMap">
+</script>
+
         {% endblock %}   
+    {#   {{include('@mercurySeriesFlashy/flashy.html.twig')}}#}
     </body>
 </html>
