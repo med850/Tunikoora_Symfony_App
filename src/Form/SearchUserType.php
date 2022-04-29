@@ -12,7 +12,7 @@ class SearchUserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('title', TextType::class, array(
+        ->add('cin', TextType::class, array(
             'attr' => array(
                 'placeholder' => '...',
                 'class' => 'form-control mr-sm-2'

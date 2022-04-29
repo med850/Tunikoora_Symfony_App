@@ -32,7 +32,11 @@ class EditUserType extends AbstractType
                 'multiple' => true,
                
             ])
-           ->add('valider', SubmitType::class)
+           ->add('valider', SubmitType::class, array(
+            'attr' => array(
+                'class' => 'btn btn-outline-success'
+            ))
+            )
         ;
     }
 

@@ -1,5 +1,7 @@
 <?php
 namespace App\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -20,6 +22,8 @@ class Users implements UserInterface
 public function __construct() {
 //$this->roles[]= 'ROLE_USER';
 $this->typeuser="client";
+$this->sent = new ArrayCollection();
+$this->recived = new ArrayCollection();
 }
 /**
 * @var int
@@ -89,6 +93,21 @@ private $username;
 * @ORM\Column(type="json")
 */
 private $roles = [];
+
+/**
+ * @ORM\Column(type="boolean", nullable=true)
+ */
+private $block;
+
+/**
+ * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="sender", orphanRemoval=true)
+ */
+private $sent;
+
+/**
+ * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="recipient", orphanRemoval=true)
+ */
+private $recived;
 
 
 
@@ -183,6 +202,78 @@ return array_unique($roles);
 public function setRoles(array $roles){
 $this->roles=$roles;
 return $this;
+}
+
+public function getBlock(): ?bool
+{
+    return $this->block;
+}
+
+public function setBlock(?bool $block): self
+{
+    $this->block = $block;
+
+    return $this;
+}
+
+/**
+ * @return Collection<int, Messages>
+ */
+public function getSent(): Collection
+{
+    return $this->sent;
+}
+
+public function addSent(Messages $sent): self
+{
+    if (!$this->sent->contains($sent)) {
+        $this->sent[] = $sent;
+        $sent->setSender($this);
+    }
+
+    return $this;
+}
+
+public function removeSent(Messages $sent): self
+{
+    if ($this->sent->removeElement($sent)) {
+        // set the owning side to null (unless already changed)
+        if ($sent->getSender() === $this) {
+            $sent->setSender(null);
+        }
+    }
+
+    return $this;
+}
+
+/**
+ * @return Collection<int, Messages>
+ */
+public function getRecived(): Collection
+{
+    return $this->recived;
+}
+
+public function addRecived(Messages $recived): self
+{
+    if (!$this->recived->contains($recived)) {
+        $this->recived[] = $recived;
+        $recived->setRecipient($this);
+    }
+
+    return $this;
+}
+
+public function removeRecived(Messages $recived): self
+{
+    if ($this->recived->removeElement($recived)) {
+        // set the owning side to null (unless already changed)
+        if ($recived->getRecipient() === $this) {
+            $recived->setRecipient(null);
+        }
+    }
+
+    return $this;
 }
 
 
