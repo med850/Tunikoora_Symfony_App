@@ -60,12 +60,19 @@ class AdminController extends AbstractController
    public function index(UsersRepository $repository): Response
     {
         
-      
+        $total = $repository->getTotalUser();
+
+        $totalBlock = $repository->getTotalBlock();
+
+      //  $totalAdmin = $repository->getTotalAdmin();
+
       //  $count = $repository->countUsers();
 
 
         return $this->render('admin/index.html.twig', [
-            
+            'total' => $total,
+            'totalBlock' =>$totalBlock
+          
         ]);
     }
 
@@ -160,14 +167,73 @@ public function deleteProduct(int $id, FlashyNotifier $flashyNotifier): Response
 
     
 
-        function userSearch(Request $request, UsersRepository $repository){
-
-            $users = $this->getDoctrine()->getRepository(Users::class)->findAll();
-            $studentsByMail = $repository->orderByMail();
-          //  $searchForm = $this->createForm(SearchStudentType::class);
+     
 
 
 
-        }
+
+
+     /**
+     * @Route("/block/{id}", name="block")
+     */
+    public function BlockeUser(Users $user)
+    {
+        $user->setBlock(($user->getBlock())?false:true);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+      //  $b = 1;
+
+        //return $this->render('admin/users.html.twig');
+
+        return $this->redirectToRoute("utilisateurs");
+
+    }
+
+
+
+           /**
+     * @Route("/deblock/{id}", name="deblock")
+     */
+   public function deblockeUser(Users $user)
+    {        
+       
+
+
+        $em = $this->getDoctrine()->getManager();
+        $user->setBlock(false);
+        $em->persist($user);
+        $em->flush();
+
+       // $b = 1;
+
+       dd($user);
+       //return $this->redirectToRoute("list_users_block");
+
+    }
+
+
+
+
+         /**
+             * @Route("admin/utilisateurs/listBlock", name="list_users_block")
+             */
+
+            function listBlock(UsersRepository $repository, PaginatorInterface $paginator, Request $request){
+
+                $users = $paginator->paginate($repository->getListBlock(),
+                $request->query->getInt('page', 1),
+                5
+                );
+        
+                    
+                    return $this->render('admin/usersBlock.html.twig',[
+                        'users' => $users ]);
+        
+        
+                }
+        
 
 }

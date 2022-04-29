@@ -31,7 +31,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Liste des Utilisateurs</li>
+              <li class="breadcrumb-item active">Liste des Utilisateurs bloqués</li>
              
             </ol>
           </div>
@@ -78,13 +78,11 @@
                     {% endfor %}
                   
                   </td>
-                   <td><a href="{{path('modify_user', {'id':user.id})}}" class="btn btn-outline-warning">Modifier</a>
-                    <a href="{{path('delete_user', {'id':user.id})}}" class="btn btn-outline-danger">Supprimer</a>
-                    {% if user.block == null %}
-                     <a href="{{path('block', {'id':user.id})}}" class="btn btn-outline-danger">Bloquer</a>
+                   <td>
+                     <a href="{{path('deblock', {'id':user.id})}}" class="btn btn-outline-danger">Debloquer</a>
                      
                     </td>
-                    {% endif %}
+                    
                    
 
 
@@ -116,5 +114,3 @@
 
 
 {% endblock %}
-
-

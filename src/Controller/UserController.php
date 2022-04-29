@@ -74,7 +74,7 @@ class UserController extends AbstractController
                 $em->flush();
                 $flashyNotifier->success('Succes');
                 return $this->redirectToRoute('app_profile');    
-                //dd($user);
+                dd($user);
             }
         }
 
@@ -124,6 +124,10 @@ class UserController extends AbstractController
 
         return new Response();
     }
+
+
+
+
 
 
 

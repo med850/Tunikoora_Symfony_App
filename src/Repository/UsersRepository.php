@@ -100,18 +100,79 @@ class UsersRepository extends ServiceEntityRepository
 
 
 
-    public function orderByMail()
+   /* public function orderByMail()
     {
         return $this->createQueryBuilder('s')
             ->orderBy('s.email', 'ASC')
             ->getQuery()->getResult();
+    }*/
+
+
+
+
+      /**
+     * Returns number of Users
+     * @return void 
+     */
+   public function getTotalUser(){
+        $query = $this->createQueryBuilder('a')
+            ->select('COUNT(a)');
+            
+        // On filtre les données
+       
+
+        return $query->getQuery()->getSingleScalarResult();
     }
 
 
 
 
+      /**
+     * Returns number of user bloqué
+     * @return void
+     */
+   public function getTotalBlock(){
+        $query = $this->createQueryBuilder('a')
+            ->select('COUNT(a)')
+            ->where('a.block = 1');
+        // On filtre les données
+       
+
+        return $query->getQuery()->getSingleScalarResult();
+ }
 
 
+
+
+       /**
+     * Returns list of user bloqué
+     * @return void
+     */
+    public function getListBlock(){
+        $query = $this->createQueryBuilder('a')
+            ->select('a')
+            ->where('a.block = 1');
+        // On filtre les données
+       
+
+     return $query->getQuery()->getResult();
+ }
+
+
+
+
+
+
+ public function search($cin)
+ {
+     return $this->createQueryBuilder('a')
+         ->andWhere('a.cin LIKE :cin ')
+         ->setParameter('cin', '%'.$cin.'%')
+         ->getQuery()
+         ->execute();
+ }
+
+    
 
 
 }
