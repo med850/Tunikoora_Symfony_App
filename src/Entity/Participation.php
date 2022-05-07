@@ -67,10 +67,6 @@ class Participation
  */
     private $date;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Stade::class, inversedBy="participations")
-     */
-    private $stade;
 
     public function getId(): ?int
     {
@@ -142,16 +138,6 @@ class Participation
         return $this;
     }
 
-    public function getStade(): ?Stade
-    {
-        return $this->stade;
-    }
-
-    public function setStade(?Stade $stade): self
-    {
-        $this->stade = $stade;
-
-        return $this;
-    }
+    
 
 }

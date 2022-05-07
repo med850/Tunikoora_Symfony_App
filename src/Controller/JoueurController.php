@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -42,6 +44,7 @@ class JoueurController extends AbstractController
     }
     
     /**
+     *  @IsGranted("ROLE_ADMIN")
      * @Route("/addJoueur", name="addJoueur")
      */
     public function addJoueur(Request $request): Response
@@ -162,6 +165,8 @@ class JoueurController extends AbstractController
 
     }
     /**
+     * @IsGranted("ROLE_ADMIN")
+
      * @Route("/display_joueur", name="display_joueur")
      */
     public function displayJoueur(PaginatorInterface $paginator,JoueurRepository $T,Request $request): Response
@@ -202,6 +207,7 @@ class JoueurController extends AbstractController
 
 
     /**
+     *  @IsGranted("ROLE_ADMIN")
      * @Route("/removeJoueur/{id}", name="supp_joueur")
      */
     public function deleteJoueur(Joueur  $joueur): Response
@@ -215,6 +221,7 @@ class JoueurController extends AbstractController
 
     }
     /**
+     *  @IsGranted("ROLE_ADMIN")
      * @Route("/modifJoueur/{id}", name="modifJoueur")
      */
     public function updateJoueur(Request $request,$id): Response
