@@ -67,7 +67,11 @@
                 <li {% if app.request.get('_route') == 'app_home' %} class="active"{% endif %}><a href="{{path('app_home')}}" class="nav-link">Home</a></li>
                 <li><a href="matches.html" class="nav-link">Matches</a></li>
 
+                <li><a href="display" class="nav-link">Blog</a></li>
+
+
                 <li><a href="blog.html" class="nav-link">Blog</a></li>
+
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
                   {% if is_granted('ROLE_ADMIN') %}
                   <li><a href="{{path('app_dashboard')}}" class="nav-link">Dashboard</a></li>

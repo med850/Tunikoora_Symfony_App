@@ -2,23 +2,20 @@
 
 namespace App\Form;
 
+use App\Entity\Review;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class SearchType extends AbstractType
+class ReviewType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-
-            ->add('titre')
-            ->add('search',SubmitType::class)
-
-            ->add('nom')
-            ->add('Rechercher',SubmitType::class)
-
+            ->add('commentaire')
+            ->add('ajouter',SubmitType::class)
 
         ;
     }
@@ -26,11 +23,7 @@ class SearchType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'data_class' => Review::class,
         ]);
     }
-
 }
-
-}
-

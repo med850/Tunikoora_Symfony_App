@@ -1,0 +1,45 @@
+{% extends 'admin/NavDash.html.twig' %}
+{% block body %}
+
+    <div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 20px;">
+
+        <div class="col-lg-8">
+
+            <div class="card">
+                <div class="card-body">
+                    <h3>Liste des commentaire</h3>
+                    <!-- Table with stripped rows -->
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Commenataire</th>
+                            <th>Modifier</th>
+                            <th>Supprimer</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for r in reviews %}
+                            <tr>
+                                <td>{{ r.commentaire }}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="{{ path('modifReview',{'id':r.id}) }}">Modifier</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" href="{{ path('supp_review',{'id':r.id}) }}">Supprimer</a>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+                        <a class="btn btn-outline-secondary" href="{{ path('addReview')}}">Ajouter un commenatire</a>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+{% endblock %}

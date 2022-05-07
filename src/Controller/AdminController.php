@@ -209,8 +209,8 @@ public function deleteProduct(int $id, FlashyNotifier $flashyNotifier): Response
 
        // $b = 1;
 
-       dd($user);
-       //return $this->redirectToRoute("list_users_block");
+       //dd($user);
+       return $this->redirectToRoute("list_users_block");
 
     }
 

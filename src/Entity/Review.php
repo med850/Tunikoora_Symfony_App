@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Vangrg\ProfanityBundle\Validator\Constraints as ProfanityAssert;
 
 /**
  * Review
@@ -23,20 +25,16 @@ class Review
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="commentaire doit etre non vide")
+     * @Assert\Length(
+     *      max = 50,
+     *      maxMessage = "doit etre <=100" )
+     * @ProfanityAssert\ProfanityCheck
      * @ORM\Column(name="commentaire", type="text", length=65535, nullable=false)
      */
     private $commentaire;
 
-    /**
-     * @var \Article
-     *
-     * @ORM\ManyToOne(targetEntity="Article")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="article_id", referencedColumnName="id")
-     * })
-     */
-    private $article;
+
 
     /**
      * @var \Users
@@ -47,6 +45,21 @@ class Review
      * })
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="comment")
+     */
+    private $article;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateReview;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $author;
 
     public function getId(): ?int
     {
@@ -65,6 +78,19 @@ class Review
         return $this;
     }
 
+
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
     public function getArticle(): ?Article
     {
         return $this->article;
@@ -77,17 +103,31 @@ class Review
         return $this;
     }
 
-    public function getUser(): ?Users
+    public function getDateReview(): ?\DateTimeInterface
     {
-        return $this->user;
+        return $this->dateReview;
     }
 
-    public function setUser(?Users $user): self
+    public function setDateReview(?\DateTimeInterface $dateReview): self
     {
-        $this->user = $user;
+        $this->dateReview = $dateReview;
 
         return $this;
     }
+
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?string $author): self
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+
 
 
 }
