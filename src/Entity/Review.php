@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Vangrg\ProfanityBundle\Validator\Constraints as ProfanityAssert;
 
 /**
  * Review
@@ -28,19 +29,12 @@ class Review
      * @Assert\Length(
      *      max = 50,
      *      maxMessage = "doit etre <=100" )
+     * @ProfanityAssert\ProfanityCheck
      * @ORM\Column(name="commentaire", type="text", length=65535, nullable=false)
      */
     private $commentaire;
 
-    /**
-     * @var \Article
-     *
-     * @ORM\ManyToOne(targetEntity="Article")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="article_id", referencedColumnName="id")
-     * })
-     */
-    private $article;
+
 
     /**
      * @var \Users
@@ -51,6 +45,11 @@ class Review
      * })
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="comment")
+     */
+    private $article;
 
     public function getId(): ?int
     {
@@ -69,17 +68,6 @@ class Review
         return $this;
     }
 
-    public function getArticle(): ?Article
-    {
-        return $this->article;
-    }
-
-    public function setArticle(?Article $article): self
-    {
-        $this->article = $article;
-
-        return $this;
-    }
 
     public function getUser(): ?Users
     {
@@ -92,6 +80,20 @@ class Review
 
         return $this;
     }
+
+    public function getArticle(): ?Article
+    {
+        return $this->article;
+    }
+
+    public function setArticle(?Article $article): self
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+
 
 
 }

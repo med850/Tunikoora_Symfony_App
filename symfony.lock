@@ -79,6 +79,9 @@
     "doctrine/sql-formatter": {
         "version": "1.1.2"
     },
+    "dompdf/dompdf": {
+        "version": "v1.2.1"
+    },
     "easycorp/easyadmin-bundle": {
         "version": "3.5",
         "recipe": {
@@ -115,6 +118,9 @@
     "mercuryseries/flashy-bundle": {
         "version": "v3.0.2"
     },
+    "mofodojodino/profanity-filter": {
+        "version": "1.3.0"
+    },
     "monolog/monolog": {
         "version": "1.26.1"
     },
@@ -132,6 +138,12 @@
     },
     "phar-io/version": {
         "version": "3.2.1"
+    },
+    "phenx/php-font-lib": {
+        "version": "0.5.4"
+    },
+    "phenx/php-svg-lib": {
+        "version": "0.4.1"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
@@ -188,6 +200,9 @@
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "sabberworm/php-css-parser": {
+        "version": "8.4.0"
     },
     "sebastian/cli-parser": {
         "version": "1.0.1"
@@ -626,6 +641,12 @@
     },
     "twig/twig": {
         "version": "v3.3.8"
+    },
+    "twilio/sdk": {
+        "version": "6.36.1"
+    },
+    "vangrg/profanity-bundle": {
+        "version": "v1.1.6"
     },
     "voku/portable-ascii": {
         "version": "1.6.1"
