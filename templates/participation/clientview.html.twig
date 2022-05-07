@@ -17,7 +17,7 @@
               <table class="table custom-table">
                 <thead>
                   <tr>
-                    <th>matchId</th>
+                    <th>match</th>
                     <th>Equipe1</th>
                     <th>equipe2</th>
                     <th>date</th>
@@ -32,7 +32,7 @@
                                 {% if p.date|date("Y-m-d") == "now"|date("Y-m-d")  %}
                                   <tr style="background:red">
                 {% elseif  p.date|date("Y-m-d") < "now"|date("Y-m-d") %}
-                  <tr style="background:#1AB7EA">  
+                  <tr style="background:#3AAF85">  
                 {% else %}
                 <tr style="background:cyan">  
 
