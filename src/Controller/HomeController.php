@@ -20,25 +20,16 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="app_home")
      */
-    public function index(EquipeRepository $repository): Response
+    public function index(EquipeRepository $repository, CallApiService $callApiService): Response
     {$equipes = $this->getDoctrine()->getManager()->getRepository(Equipe::class)->findAll();
         $equipes= $repository->orderByName();
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',            
             'equipe'=>$equipes,
-
-    public function index(CallApiService $callApiService): Response
-    {
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
             'data' => $callApiService->getDataTunisia(),
             'dataW' => $callApiService->getDataWorld(),
-
         ]);
     }
-
-
-
 
       /**
      * @Route("/auth", name="app_auth")
