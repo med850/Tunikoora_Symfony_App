@@ -4,8 +4,7 @@
 
 {% block body %}
 
-<div style="display:flex;align-items: center;justify-content: center;margin-top: 150px;">
-    <!-- jquery validation -->
+<div style="position : absolute;margin-left:17%;width:83%; height: auto;">  <!-- jquery validation -->
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">Ajouter un joueur   <small>Session Admin</small></h3>
@@ -35,12 +34,23 @@
                     {{ form_widget(form.tel,{'attr':{'class':'form-control'}}) }}
                     {{ form_errors(form.tel,{'attr':{'class':'form-control'}}) }}
                 </div>
+                <label for="inputText" class="col-sm-4 col-form-label">Image</label>
+                    <div class="col-sm-6">
+                        {{ form_widget(form.image,{'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(form.image,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Nombre de buts</label>
+                    {{ form_widget(form.nb_but,{'attr':{'class':'form-control'}}) }}
+                    {{ form_errors(form.nb_but,{'attr':{'class':'form-control'}}) }}
+                </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Equipe</label>
-                    <!--<select id="select_equipe"></select>-->
                     {{ form_widget(form.equipe,{'attr':{'class':'form-control'}}) }}
                     {{ form_errors(form.equipe,{'attr':{'class':'form-control'}}) }}
                 </div>
+               
 
             </div>
             <!-- /.card-body -->

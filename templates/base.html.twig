@@ -26,6 +26,14 @@
 
   <link rel="stylesheet" href="{{asset("assets/css/style.css")}}">
 
+
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+      Weglot.initialize({
+          api_key: 'wg_57f6c3f52c348140124c9e00af5a720e6'
+      });
+  </script>
+
     <link rel="stylesheet" href="{{ asset("bundles/mercuryseriesflashy/css/flashy.css") }}">
 
 
@@ -59,6 +67,8 @@
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li {% if app.request.get('_route') == 'app_home' %} class="active"{% endif %}><a href="{{path('app_home')}}" class="nav-link">Home</a></li>
                 <li><a href="matches.html" class="nav-link">Matches</a></li>
+                <li><a href="{{ path('view_joueur') }}" class="nav-link">Joueurs</a></li>
+
                 <li><a href="blog.html" class="nav-link">Blog</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
                   {% if is_granted('ROLE_ADMIN') %}
