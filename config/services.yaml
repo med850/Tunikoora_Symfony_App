@@ -5,9 +5,12 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     img_directory: '%kernel.project_dir%/public/adminAssets/img'
+
     twilio_sid: AC12e0e4924680f5f65a425b37b48575dd
     twilio_token: 91fc18db05003075df63500c1bf62df8
     twilio_number: '+14454551924'
+
+
 
 
 services:

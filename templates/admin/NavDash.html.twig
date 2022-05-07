@@ -26,7 +26,19 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset("adminAssets/plugins/summernote/summernote-bs4.min.css")}}">
 
+<!--flashy -->
+      <link rel="stylesheet" href="{{asset("bundles/mercuryseriesflashy/css/flashy.css")}}">
+
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+      Weglot.initialize({
+          api_key: 'wg_57f6c3f52c348140124c9e00af5a720e6'
+      });
+  </script>
+
+
   <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+
 
         {% endblock %}
     </head>
@@ -95,9 +107,15 @@
                 </a>
               </li>
               <li class="nav-item">
+
                 <a href="display_article" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Article</p>
+
+                <a href="{{ path('display_joueur') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Joueur</p>
+
                 </a>
               </li>
               <li class="nav-item">
@@ -671,9 +689,16 @@
 <!-- ./wrapper -->
 
 
-   
+   {% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+    {{ message }}
+    </div>
+   {% endfor %}
         {% block body %}{% endblock %}
     
+   <!-- /.content-wrapper -->
+  
+
  
 
  {% block javascripts %}
@@ -712,12 +737,21 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset("adminAssets/js/pages/dashboard.js")}}"></script>
 
+
+<script src="{{asset("bundles/mercuryseriesflashy/jd/flashy.js")}}"></script>
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdxGJpqa5_9CdQ4zUlWw2XazA96mRRxpw&callback=initMap">
+</script>
+
+        {% endblock %}   
+    {#   {{include('@mercurySeriesFlashy/flashy.html.twig')}}#}
+
 <script src="//code.jquery.com/jquery.js"></script>
     <!-- Load Flashy default JavaScript -->
     <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
     <!-- Include Flashy default partial -->
  
-        {% endblock %}   
            {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+
     </body>
 </html>

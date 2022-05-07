@@ -1,0 +1,49 @@
+
+
+{% block body %}
+<h1 align="center">Liste des Joueurs</h1>
+                 <table class="table table-striped" border="1">
+                     <thead>
+                     <tr>     <th>Nom</th>
+                         <th>prénom</th>
+                         <th>poste</th>
+                         <th>téléphone</th>
+                         <th>Nombre de buts</th>
+                         <th>Image</th>
+
+                         <th>equipe</th>
+
+                         
+                         
+                     </tr>
+                     </thead>
+                     <tbody>
+                     {% for a in joueur %}
+                         <tr>
+                             <td>{{ a.nom }}</td>
+                             <td>{{ a.prenom }}</td>
+                             <td>{{ a.poste}}</td>
+                             <td>{{ a.tel }}</td>
+                             <td>{{ a.nb_but }}</td>
+                             <td style="color: #EEEEEE"><img src="{{asset('/adminAssets/img/')~ a.image  }}" alt="" style="width: 200px; height: 150px"></td>                                
+
+                             <td>{{ a.equipe }}</td>
+                             
+                            
+                         </tr>
+
+                     {% endfor %}
+
+                     </tbody>
+                 </table>
+                 <!-- End small tables -->
+
+             </div>
+         </div>
+
+     </div>
+
+
+
+ </div>
+{% endblock %}

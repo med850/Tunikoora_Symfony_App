@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+             
+
+
+
+ <div class="hero overlay" style="background-image: url('images/bg_3.jpg'); height: 00px;">
+  
+    </div>
+
+    
+    
+    <div class="container">
+      
+
+      <div class="row">
+        <div class="col-lg-12">
+          
+      
+        </div>
+      </div>
+    </div>
+  
+
+        <div class="site-section bg-dark">
+      <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+          <div class="col-lg-8">
+            
+            <div class="widget-next-match">
+              <table class="table custom-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Localisation</th>
+                    <th>Arbitre Principal</th>
+                    <th>Tour</th>
+                   
+
+                  </tr>
+                </thead>
+                <tbody>
+                {% for m in matches %}
+                  <tr>
+                   <td><strong class="text-white">{{m.id}}</strong></td>
+
+                    <td>{{m.localisation}}</td>
+                    <td>{{m.arbitreprincipale}}</td>
+                    <td>{{m.tour}}</td>
+                
+                  </tr>
+                  {% endfor %}
+               </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+   
+
+   
+
+{% endblock %}
+{% block style %}
+  <link rel="stylesheet" href="{{asset("assets/css/matchtb.css")}}">
+{% endblock %}
+
