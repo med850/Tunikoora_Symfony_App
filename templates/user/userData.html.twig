@@ -1,0 +1,46 @@
+
+
+{% extends 'base-pdf.html.twig' %}
+
+{% block title %}Liste des données de {{app.user.username}} {{app.user.prenom}}{% endblock %}
+
+
+ {% block stylesheets %}
+
+     
+
+ {% endblock %}
+
+{% block body %}
+
+  <center>  <img src="{{absolute_url(asset("adminAssets/img/tunikoora.png"))}}" alt="Logo" height="120" width="120"></center>
+    <center><h1>Bienvenue dans TuniKoora</h1></center>
+    <h1></h1>
+
+    <h3>Tableau de vos données Mr/Mdm : {{app.user.username}} {{app.user.prenom}}
+       <h1></h1>
+          <h1></h1>
+  <div>
+    <table border = 1>
+        <thead>
+            <tr>
+                <th scope="col">Cin</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                  <th scope="col">Email</th>
+                    <th scope="col">Tel</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ app.user.cin }}</td>
+                <td>{{ app.user.username }}</td>
+                <td>{{ app.user.prenom }}</td>
+                  <td>{{ app.user.email }}</td>
+                    <td>{{ app.user.tel }}</td>
+            </tr>
+        </tbody>
+    </table>
+   </div>
+
+{% endblock %}
