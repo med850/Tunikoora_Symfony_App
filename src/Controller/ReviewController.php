@@ -28,9 +28,14 @@ class ReviewController extends AbstractController
     public function addReview(Request $request): Response
     {
         $review = new Review();
+        $badWords = array('bad', 'words'); // or load from db
+        $check = new Check($badWords);
+
+
+        // $check = $this->get('vangrg_profanity.checker');
+
         $form = $this->createForm(ReviewType::class,$review);
         $form->handleRequest($request);
-
         if($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($review);//Add
@@ -85,5 +90,28 @@ class ReviewController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('displayReviewFront');
+    }
+
+    /**
+     * @Route("/displayReviewBack", name="displayReviewBack")
+     */
+    public function displayReviewBack(): Response
+    {
+        $review = $this->getDoctrine()->getManager()->getRepository(Review::class)->findAll();
+        return $this->render('review/displayReviewBack.html.twig', [
+            'reviews'=>$review
+        ]);
+    }
+
+    /**
+     * @Route("/supp_reviewBack/{id}", name="supp_reviewBack")
+     */
+    public function deleteReviewBack(Review  $review): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($review);
+        $em->flush();
+
+        return $this->redirectToRoute('displayReviewBack');
     }
 }

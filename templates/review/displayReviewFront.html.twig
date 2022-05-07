@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 
     <link rel="stylesheet" href="{{asset("assets/css/bootstrap/bootstrap.css")}}">
     <link rel="stylesheet" href="{{asset("assets/css/jquery-ui.css")}}">
@@ -26,6 +28,7 @@
     <link rel="stylesheet" href="{{asset("assets/css/aos.css")}}">
 
     <link rel="stylesheet" href="{{asset("assets/css/style.css")}}">
+
 
 
 
@@ -57,7 +60,7 @@
                 <div class="ml-auto">
                     <nav class="site-navigation position-relative text-right" role="navigation">
                         <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                            <li><a href="index.html" class="nav-link">Home</a></li>
+                            <li><a href="index.html.twig" class="nav-link">Home</a></li>
                             <li><a href="matches.html" class="nav-link">Matches</a></li>
                             <li><a href="players.html" class="nav-link">Players</a></li>
                             <li class="active"><a href="blog.html" class="nav-link">Blog</a></li>
@@ -78,47 +81,58 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div >
-                        <div >
-                            <h3>Liste des articles</h3>
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th style="color: #EEEEEE">Titre</th>
-                                    <th style="color: #EEEEEE">Description</th>
-                                    <th style="color: #EEEEEE">Image</th>
-                                </tr>
-                                <tr>
-                                    <th style="color: #EEEEEE">Commentaire</th>
-                                    <th style="color: #EEEEEE">Modifier</th>
-                                    <th style="color: #EEEEEE">Supprimer</th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                            <h1>Pages des articles</h1>
+                            <section class="articles mt-5">
+                                <article >
+                                    <h2 class="title">Titre</h2><p>{{  article.titre}}</p>
+                                    <h2>Date de publication</h2><p>{{ article.date | date('m-d-Y')}} at {{ article.date | date('H:i')}}</p>
+                                    {% if app.user %}
+                                    <h2>Article publier par Mr:<span class="badge badge-success"><strong>{{ app.user ? app.user.username }}</strong></span></h2>
+                                    {% endif %}
 
-                                {% for a in articles %}
-                                    <tr>
-                                        <td style="color: #EEEEEE">{{ a.titre }}</td>
-                                        <td style="color: #EEEEEE">{{ a.description }}</td>
-                                        <td style="color: #EEEEEE"><img src="{{asset('/adminAssets/img/')~ a.image  }}" alt="" style="width: 200px; height: 150px"></td>
-                                    </tr>
-                                {% endfor %}
-                                {% for r in reviews %}
-                                    <tr>
-                                        <td style="color: #EEEEEE">{{ r.commentaire }}</td>
-                                        <td style="color: #EEEEEE"><a class="btn btn-primary" href="{{ path('modifReview',{'id':r.id}) }}">Modifier</a></td>
-                                        <td style="color: #EEEEEE"><a class="btn btn-primary" href="{{ path("supp_reviewFront",{'id':r.id})}}" >Supprimer</a></td>
-                                    </tr>
-                                {% endfor %}
 
-                                </tbody>
-                            </table>
-                            <td style="color: #EEEEEE"><a class="btn btn-primary" href="{{ path("addReview")}}" >Ajouter votre commentaire</a></td>
+
+                                    <div class ="content">
+                            <img src="{{asset('/adminAssets/img/')~ article.image  }}" alt="" style="width: 200px; height: 150px">
+                            <h3>Description</h3><p>{{ article.description }}</p>
+                            <div class="rateyo" id= "rating"
+                                 data-rateyo-rating="0"
+                                 data-rateyo-num-stars="5"
+                                 data-rateyo-score="3">
+                            </div>
+                            <span class='result'></span>
+                            <input type="hidden" name="rating">
+                        </div>
+                        </article>
+                        </section>
+                        {% if app.user %}
+                        <div>
+
+                            {{ form_start(review,{attr:{novalidate:'novalidate'}}) }}
+                            <h3 class="mt-5 mb-5">Comments</h3>
+                            <section id ="comments">
+                                {% for comment in article.comment %}
+                                    <div class ="comment">
+                                        <p>{{comment.commentaire}} </p>
+                                    </div>
+                                {% endfor %}
+                                <h3 >Ajouter votre commentaires</h3>
+
+                                <div class="form-group">
+                                    {{ form_widget(review.commentaire,{'attr':{'class':'form-control'}}) }}
+                                    {{ form_errors(review.commentaire,{'attr':{'class':'form-control'}}) }}
+                                </div>
+                                <div class="card-footer">
+                                    {{ form_widget(review.ajouter,{'attr':{'class':'btn btn-primary'}}) }}
+                                </div>
+                                {{ form_end(review) }}
+                            </section>
+                        </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                {% endif %}
+
+
 
     <footer class="footer-section">
         <div class="container">
@@ -214,7 +228,23 @@
 <script src="{{asset("assets/js/jquery.mb.YTPlayer.min.js")}}"></script>
 
 
+
 <script src="js/main.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+            <script>
+
+
+                $(function () {
+                    $(".rateyo").rateYo().on("rateyo.change", function (e, data) {
+                        var rating = data.rating;
+                        $(this).parent().find('.score').text('score :'+ $(this).attr('data-rateyo-score'));
+                        $(this).parent().find('.result').text('rating :'+ rating);
+                        $(this).parent().find('input[name=rating]').val(rating); //add rating value to input field
+                    });
+                });
+
+            </script>
 
 </body>
 
