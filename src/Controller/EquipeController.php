@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 use MercurySeries\FlashyBundle\FlashyNotifier;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -29,6 +31,7 @@ class EquipeController extends AbstractController
         ]);
     }
     /**
+     *  @IsGranted("ROLE_ADMIN")
      * @Route("/victory/{id}", name="ajouter3")
      */
     public function victory(Equipe $equipe){
@@ -44,6 +47,7 @@ class EquipeController extends AbstractController
         }
     }
     /**
+     *  @IsGranted("ROLE_ADMIN")
      * @Route("/draw/{id}", name="null3")
      */
     public function draw(Equipe $equipe){
@@ -60,6 +64,7 @@ class EquipeController extends AbstractController
     }
     
     /**
+     *  @IsGranted("ROLE_ADMIN")
      * @Route("/defeat/{id}", name="sub3")
      */
     public function defeat(Equipe $equipe){
@@ -97,6 +102,7 @@ class EquipeController extends AbstractController
         
                 }
      /**
+      *  @IsGranted("ROLE_ADMIN")
      * @Route("/addEquipe", name="addEquipe")
      */
     public function addEquipe( Request $request): Response
@@ -181,6 +187,7 @@ class EquipeController extends AbstractController
     }
 
     /**
+     *  @IsGranted("ROLE_ADMIN")
      * @Route("/removeEquipe/{id}", name="supp_equipe")
      */
     public function deleteEquipe(Equipe  $equipe): Response
@@ -194,6 +201,7 @@ class EquipeController extends AbstractController
 
     }
     /**
+     *  @IsGranted("ROLE_ADMIN")
      * @Route("/modifEquipe/{id}", name="modifEquipe")
      */
     public function updateEquipe(Request $request,$id): Response
