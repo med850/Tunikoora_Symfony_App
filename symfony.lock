@@ -79,6 +79,9 @@
     "doctrine/sql-formatter": {
         "version": "1.1.2"
     },
+    "dompdf/dompdf": {
+        "version": "v1.2.1"
+    },
     "easycorp/easyadmin-bundle": {
         "version": "3.5",
         "recipe": {
@@ -106,6 +109,12 @@
     "illuminate/support": {
         "version": "v8.83.6"
     },
+    "knplabs/knp-components": {
+        "version": "v3.4.0"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.8.0"
+    },
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
@@ -132,6 +141,12 @@
     },
     "phar-io/version": {
         "version": "3.2.1"
+    },
+    "phenx/php-font-lib": {
+        "version": "0.5.4"
+    },
+    "phenx/php-svg-lib": {
+        "version": "0.4.1"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
@@ -188,6 +203,9 @@
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "sabberworm/php-css-parser": {
+        "version": "8.4.0"
     },
     "sebastian/cli-parser": {
         "version": "1.0.1"
