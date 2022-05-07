@@ -1,0 +1,26 @@
+{% block body %}
+
+                    <h3>BIENVENUE A TUNIKOORA</h3>
+                    <h3>Liste des articles</h3>
+
+                    <table border="1">
+                        <thead>
+                        <tr>
+                            <th scope="col">TITRE</th>
+                            <th scope="col">DESCRIPTION</th>
+                            <th scope="col">Date de creation</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in articles %}
+                            <tr>
+                                <td>{{ a.titre }}</td>
+                                <td>{{ a.description }}</td>
+                                <td>{{ a.date|date('d-m-Y')}}</td>
+                                </th>
+                            </tr>
+
+                        {% endfor %}
+
+
+{% endblock %}

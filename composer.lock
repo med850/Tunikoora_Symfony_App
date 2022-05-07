@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8715724b6b0014f80ace8ea1a0be0f8a",
+    "content-hash": "18c62d8055341ecf5cc1531ec52dae9a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -8805,6 +8805,122 @@
                 }
             ],
             "time": "2022-04-06T06:47:41+00:00"
+        },
+        {
+            "name": "twilio/sdk",
+            "version": "6.37.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twilio/twilio-php.git",
+                "reference": "72d4053d9d9f727f5d5490daca24ba035e279c31"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/72d4053d9d9f727f5d5490daca24ba035e279c31",
+                "reference": "72d4053d9d9f727f5d5490daca24ba035e279c31",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.3 || ^7.0",
+                "phpunit/phpunit": ">=7.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "An HTTP client to execute the API requests"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Twilio\\": "src/Twilio/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Twilio API Team",
+                    "email": "api@twilio.com"
+                }
+            ],
+            "description": "A PHP wrapper for Twilio's API",
+            "homepage": "https://github.com/twilio/twilio-php",
+            "keywords": [
+                "api",
+                "sms",
+                "twilio"
+            ],
+            "support": {
+                "issues": "https://github.com/twilio/twilio-php/issues",
+                "source": "https://github.com/twilio/twilio-php/tree/6.37.0"
+            },
+            "time": "2022-05-04T19:20:43+00:00"
+        },
+        {
+            "name": "vangrg/profanity-bundle",
+            "version": "v1.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ivan-griga/ProfanityBundle.git",
+                "reference": "535323a0d1b2624c90c602630ac5e9ee8c502c3f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ivan-griga/ProfanityBundle/zipball/535323a0d1b2624c90c602630ac5e9ee8c502c3f",
+                "reference": "535323a0d1b2624c90c602630ac5e9ee8c502c3f",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/orm": ">=2.4",
+                "php": "^7.1",
+                "symfony/console": "~3.4|~4.0",
+                "symfony/framework-bundle": "^3.4|^4.0",
+                "symfony/validator": "^3.4|^4.0",
+                "symfony/yaml": "^3.4|^4.0"
+            },
+            "suggest": {
+                "doctrine/doctrine-bundle": "For integration with Doctrine",
+                "doctrine/orm": "For integration with Doctrine ORM"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vangrg\\ProfanityBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Griga",
+                    "email": "grigaivan2@gmail.com"
+                }
+            ],
+            "description": "Checker for bad words.",
+            "keywords": [
+                "bad",
+                "bundle",
+                "censor",
+                "filter",
+                "profanity",
+                "symfony",
+                "words"
+            ],
+            "support": {
+                "issues": "https://github.com/ivan-griga/ProfanityBundle/issues",
+                "source": "https://github.com/ivan-griga/ProfanityBundle/tree/v1.1.6"
+            },
+            "time": "2019-02-20T10:35:55+00:00"
         },
         {
             "name": "voku/portable-ascii",
