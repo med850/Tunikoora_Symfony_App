@@ -33,20 +33,7 @@
 
 <body>
 
-<div class="site-wrap">
-
-    <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-            <div class="site-mobile-menu-close">
-                <span class="icon-close2 js-menu-toggle"></span>
-            </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-    </div>
-
-
     <header class="site-navbar py-4" role="banner">
-
         <div class="container">
             <div class="d-flex align-items-center">
                 <div class="site-logo">
@@ -57,7 +44,7 @@
                 <div class="ml-auto">
                     <nav class="site-navigation position-relative text-right" role="navigation">
                         <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                            <li><a href="index.html" class="nav-link">Home</a></li>
+                            <li><a href="index.html.twig" class="nav-link">Home</a></li>
                             <li><a href="matches.html" class="nav-link">Matches</a></li>
                             <li><a href="players.html" class="nav-link">Players</a></li>
                             <li class="active"><a href="blog.html" class="nav-link">Blog</a></li>
@@ -94,7 +81,7 @@
                                 <td style="color: #EEEEEE">{{ a.titre }}</td>
                                 <td style="color: #EEEEEE">{{ a.description }}</td>
                                 <td style="color: #EEEEEE"><img src="{{asset('/adminAssets/img/')~ a.image  }}" alt="" style="width: 200px; height: 150px"></td>
-                                <td style="color: #EEEEEE"><a class="btn btn-outline-secondary" href="{{ path("displayReviewFront")}}" >View</a></td>
+                                <td style="color: #EEEEEE"><a class="btn btn-light" href="{{ path('articleShow',{'id':a.id})}}" >View</a></td>
 
                             </tr>
                         {% endfor %}
