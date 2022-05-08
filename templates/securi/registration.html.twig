@@ -1,0 +1,83 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{% block title %}Inscription | Connexion{% endblock %}</title>
+<head>
+{% block stylesheets %}
+
+ <link rel="stylesheet" href="{{asset("assets/css/authCl.css")}}">
+ 
+{% endblock %}
+
+</head>
+
+<body>
+<img class = "img"src="{{asset("adminAssets/img/tunikoora.png")}}" alt="Logo" height="120" width="120">
+<div id="login-box">
+  <div class="left">
+    <h1>Inscription</h1>
+    
+
+   {{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
+{{ form_widget(form.cin,{'attr':{'placeholder':' Cin'}}) }}
+<div class="my-custom-class-for-errors">
+{{ form_errors(form.cin) }}
+</div>
+{{ form_widget(form.username,{'attr':{'placeholder':'Nom'}}) }}
+<div class="my-custom-class-for-errors">
+{{ form_errors(form.username) }}
+</div>
+{{ form_widget(form.prenom,{'attr':{'placeholder':'Prenom'}}) }}
+<div class="my-custom-class-for-errors">
+{{ form_errors(form.prenom) }}
+</div>
+{{ form_widget(form.tel,{'attr':{'placeholder':'Tel'}}) }}
+<div class="my-custom-class-for-errors">
+{{ form_errors(form.tel) }}
+</div>
+{{ form_widget(form.email,{'attr':{'placeholder':'Email'}}) }}
+<div class="my-custom-class-for-errors">
+{{ form_errors(form.email) }}
+</div>
+{{ form_widget(form.password,{'attr':{'placeholder':'Mot de passe'}}) }}
+<div class="my-custom-class-for-errors">
+{{ form_errors(form.password) }}
+</div>
+{{ form_widget(form.repeatpassword,{'attr':{'placeholder':'Répétez votre mot de passe'}}) }}
+<div class="my-custom-class-for-errors">
+{{ form_errors(form.repeatpassword) }}
+</div>
+ <input type="submit" name="signup_submit" value="Sign me up" />
+{{form_end(form) }}
+  </div>
+  
+  <div class="right">
+    <span class="loginwith">Sign in with<br />social network</span>
+    
+    <button class="social-signin facebook">Log in with facebook</button>
+    <button class="social-signin twitter">Log in with Twitter</button>
+    <button class="social-signin google">Log in with Google+</button>
+     <a href="{{path('security_login')}}" class="nav-link">j'ai un compte déjà</a>
+  </div>
+  <div class="or">OR</div>
+</div>
+
+
+
+
+
+
+{% block javascripts %}
+
+{% endblock %}
+
+
+
+</body>
+
+
+
+</html>

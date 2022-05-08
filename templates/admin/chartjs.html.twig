@@ -1,0 +1,92 @@
+<style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      .chartMenu {
+        width: 100vw;
+        height: 40px;
+        background: #1A1A1A;
+        color: rgba(63,103,145);
+      }
+      .chartMenu p {
+        padding: 10px;
+        font-size: 20px;
+      }
+      .chartCard {
+        width: 100vw;
+        height: calc(100vh - 40px);
+        background: rgba(63,103,145);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chartBox {
+        width: 700px;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px rgba(63,103,145);
+        background: white;
+      }
+    </style>
+
+    <div class="chartMenu">
+
+        <a  href="{{ path('chart_js') }}">Imprimer</a>
+    </div>
+    
+    <div class="chartCard">
+     
+      <div class="chartBox">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+  
+
+
+
+   /* 'Janvier','Fevrier','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Octobre','Novembre','Decemebre' */
+    const data = {
+        labels: [ {% for a in joueur %} '{{ a.nom }}',{% endfor %}],
+        datasets: [{
+          label: 'Meilleur buteur',
+          data:  [{% for a in joueur %} {{ a.nb_but }},{% endfor %} ''],
+        backgroundColor: [
+          'rgba(63,103,145)',
+         
+        ],
+        borderColor: [
+          'rgba(63,103,145)',
+        
+        ],
+        borderWidth: 1
+      }]
+    };
+  
+   
+    // config 
+    const config = {
+      type: 'bar',
+      data,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    // render init block
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+    document.getElementById('annee').SelectedIndex.text;
+
+    
+
+    </script>

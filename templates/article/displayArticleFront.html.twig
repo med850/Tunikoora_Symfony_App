@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Blog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="{{asset("assets/css/bootstrap/bootstrap.css")}}">
+    <link rel="stylesheet" href="{{asset("assets/css/jquery-ui.css")}}">
+    <link rel="stylesheet" href="{{asset("assets/css/owl.carousel.min.css")}}">
+    <link rel="stylesheet" href="{{asset("assets/css/owl.theme.default.min.css")}}">
+    <link rel="stylesheet" href="{{asset("assets/css/owl.theme.default.min.css")}}">
+
+    <link rel="stylesheet" href="{{asset("assets/css/jquery.fancybox.min.css")}}">
+
+    <link rel="stylesheet" href="{{asset("assets/css/bootstrap-datepicker.css")}}">
+
+    <link rel="stylesheet" href="{{asset("assets/fonts/flaticon/font/flaticon.css")}}">
+
+    <link rel="stylesheet" href="{{asset("assets/css/aos.css")}}">
+
+    <link rel="stylesheet" href="{{asset("assets/css/style.css")}}">
+
+
+
+</head>
+
+<body>
+
+    <header class="site-navbar py-4" role="banner">
+        <div class="container">
+            <div class="d-flex align-items-center">
+                <div class="site-logo">
+                    <a href="index.html">
+                       <!-- <img src="{{asset("adminAssets/img/tunikoora.png")}}" alt="Logo">-->
+                    </a>
+                </div>
+                <div class="ml-auto">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li><a href="{{path('app_home')}}" class="nav-link">Home</a></li>
+                             <li><a href="display" class="nav-link">Blog</a></li>
+                               <li><a href="{{path('app_prod_index')}}" class="nav-link">produit</a></li>
+                                <li><a href="{{path('app_tck_index')}}" class="nav-link">ticket</a></li>
+                           <li><a href="{{ path('view_joueur') }}" class="nav-link">Joueurs</a></li>
+                           
+                              
+                                
+
+
+                                      {% if is_granted('ROLE_ADMIN') %}
+                  <li><a href="{{path('app_dashboard')}}" class="nav-link">Dash</a></li>
+                  <li><a href="{{ path('view_joueur') }}" class="nav-link">Joueurs</a></li>
+
+                  {% endif %}
+                   {%if not app.user%}
+                   <li><a href="{{ path('view_joueur') }}" class="nav-link">Joueurs</a></li>
+
+                 <li><a href="{{path('app_register')}}" class="nav-link">Inscription</a></li>
+                  <li><a href="{{path('app_login')}}" class="nav-link">Connexion</a></li>
+                  {% else %}
+                   <li{% if app.request.get('_route') == 'app_profile' %} class="active"{% endif %}><a href="{{path('app_profile')}}" class="nav-link">Profile</a></li>
+
+                    <li><a href="{{path('app_message')}}" class="nav-link">Msg</a></li>
+                 
+                  <li><a href="{{path('app_logout')}}" class="nav-link">Déconnexion</a></li>
+
+                  
+
+                  {% endif %}
+                           
+                        </ul>
+                    </nav>
+
+                    <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right text-white"><span
+                                class="icon-menu h3 text-white"></span></a>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="hero overlay" style="background-image: url('assets/images/bg_3.jpg');">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div >
+                        <div >
+                            <h3>Liste des articles</h3>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th style="color: #EEEEEE">Titre</th>
+                            <th style="color: #EEEEEE">Description</th>
+                            <th style="color: #EEEEEE">Image</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in articles %}
+                            <tr>
+                                <td style="color: #EEEEEE">{{ a.titre }}</td>
+                                <td style="color: #EEEEEE">{{ a.description }}</td>
+                                <td style="color: #EEEEEE"><img src="{{asset('/adminAssets/img/')~ a.image  }}" alt="" style="width: 200px; height: 150px"></td>
+                                <td style="color: #EEEEEE"><a class="btn btn-light" href="{{ path('articleShow',{'id':a.id})}}" >View</a></td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+
+
+
+
+   
+
+</div>
+<!-- .site-wrap -->
+
+<script src="{{asset("assets/js/jquery-3.3.1.min.js")}}"></script>
+<script src="{{asset("assets/js/jquery-migrate-3.0.1.min.js")}}"></script>
+<script src="{{asset("assets/js/jquery-ui.js")}}"></script>
+<script src="{{asset("assets/js/popper.min.js")}}"></script>
+<script src="{{asset("assets/js/bootstrap.min.js")}}"></script>
+<script src="{{asset("assets/js/owl.carousel.min.js")}}"></script>
+<script src="{{asset("assets/js/jquery.stellar.min.js")}}"></script>
+<script src="{{asset("assets/js/jquery.countdown.min.js")}}"></script>
+<script src="{{asset("assets/js/bootstrap-datepicker.min.js")}}"></script>
+<script src="{{asset("assets/js/jquery.easing.1.3.js")}}"></script>
+<script src="{{asset("assets/js/aos.js")}}"></script>
+<script src="{{asset("assets/js/jquery.fancybox.min.js")}}"></script>
+<script src="{{asset("jassets/s/jquery.sticky.js")}}"></script>
+<script src="{{asset("assets/js/jquery.mb.YTPlayer.min.js")}}"></script>
+
+
+<script src="js/main.js"></script>
+
+</body>
+
+</html>

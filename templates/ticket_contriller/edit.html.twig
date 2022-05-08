@@ -1,0 +1,36 @@
+{% extends 'admin/NavDash.html.twig' %}
+
+{% block title %}Edit Ticket{% endblock %}
+
+{% block body %}
+    <h1>Edit Ticket</h1>
+<h1>Create new Produit</h1>
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 >Ajouter des Poduits</h3>
+                {{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+                <label for="inputText" class="col-sm-4 col-form-label">Equipe1</label>
+                <div class="col-sm-6">
+                    {{ form_widget(form.equipea,{'attr':{'class':'form-control'}}) }}
+
+                </div>
+                <label for="inputText" class="col-sm-4 col-form-label">Equipe2</label>
+                <div class="col-sm-6">
+                    {{ form_widget(form.equipeb,{'attr':{'class':'form-control'}}) }}
+
+                </div>
+                <label for="inputText" class="col-sm-4 col-form-label">prix</label>
+                <div class="col-sm-6">
+                    {{ form_widget(form.prix,{'attr':{'class':'form-control'}}) }}
+
+                </div>
+                <br>
+    {{ include('ticket_contriller/_form.html.twig', {'button_label': 'Update'}) }}
+    <br>
+    <a class="btn btn-success" href="{{ path('app_ticket_contriller_index') }}">back to list</a>
+
+    {{ include('ticket_contriller/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,38 @@
+
+
+
+{% block body %}
+
+<h1 align="center">Liste des Equipes</h1>
+
+                    <table class="table table-striped" border="1">
+                        <thead>
+                        <tr>     <th>Nom</th>
+                            <th>Classement</th>
+                            
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in equipe %}
+                            <tr>
+                                <td>{{ a.nom }}</td>
+                                <td>{{ a.classement }}</td>
+                               
+                            </tr>
+
+                        {% endfor %}
+                        
+                        </tbody>
+                        
+                    </table>
+                    <!-- End small tables -->
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+{% endblock %}

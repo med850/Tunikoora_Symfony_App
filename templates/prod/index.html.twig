@@ -1,0 +1,50 @@
+{% extends 'home/index.html.twig' %}
+
+{% block title %}Produit index{% endblock %}
+
+{% block body %}
+
+<section class="bg-light p-3">
+    <h1>Les produits</h1>
+
+</section>
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+    <div class="col-lg-9">
+        <div class="card-body">
+            <table border="1">
+                <section class="row">
+                    {% for produit in produits %}
+                        <div class="col-4 mt-4">
+                            <div class="border border-dark rounded p-2 clearfix">
+                                <h2>{{ produit.nom }} {{ produit.prix }} TD</h2>
+
+                                <p>{{ produit.qte }} Unite</p>
+                                <p>{{ produit.Description }} </p>
+                                <img src="{{asset('/adminAssets/img/')~ produit.image  }}"
+                                     alt="" style="width: 350px; height: 250px"><hr>
+                                <br>
+                                <a class="btn btn-success" href="{{ path('app_prod_show', {'id': produit.id}) }}">show</a>
+                                <a href="{{path("cart_add", {id: produit.id})}}" class="btn btn-success">
+                                    <i class="bi bi-cart-plus">Ajouter</i>
+                                </a>
+                                <br>
+
+
+                            </div>
+                        </div>
+                    {% endfor %}
+
+
+
+
+        </section>
+<br>
+
+                <a href="{{path('prodprod')}}">Aa - Zz</a>
+
+                <div class="navigation">
+                    {{ knp_pagination_render(produits) }}
+                </div>
+        {% endblock %}
+
+

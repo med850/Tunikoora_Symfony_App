@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{% block title %}Inscription | Connexion{% endblock %}</title>
+<head>
+{% block stylesheets %}
+
+ <link rel="stylesheet" href="{{asset("assets/css/authCl.css")}}">
+
+  <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+ 
+{% endblock %}
+
+</head>
+
+<body>
+<img class = "img"src="{{asset("adminAssets/img/tunikoora.png")}}" alt="Logo" height="120" width="120">
+
+<div id="login-box">
+  <div class="left">
+    <h1>Inscription</h1>
+    
+
+   {{ form_start(registrationForm, {'attr':{'novalidate':'novalidate'}}) }}
+
+
+
+{{ form_row(registrationForm.cin,{'label' : 'Cin'}) }}
+
+
+{{ form_row(registrationForm.username,{'label' : 'Nom'}) }}
+
+
+
+{{ form_row(registrationForm.prenom,{'label' : 'Prénom'}) }}
+
+
+
+{{ form_row(registrationForm.tel,{'label' : 'Tél'}) }}
+
+
+
+{{ form_row(registrationForm.email,{'label' : 'Email'}) }}
+
+
+
+{{ form_row(registrationForm.password,{'label':'Mot de passe'}) }}
+
+
+
+{{ form_row(registrationForm.repeatpassword,{'label':'Répétez mot de passe'}) }}
+
+
+ <input type="submit" name="signup_submit" value="S'inscrire" />
+{{form_end(registrationForm) }}
+    
+    
+   
+  </div>
+  
+  <div class="right">
+    <span class="loginwith">Sign in with<br />social network</span>
+    
+    <button class="social-signin facebook">Log in with facebook</button>
+    <button class="social-signin twitter">Log in with Twitter</button>
+    <button class="social-signin google">Log in with Google+</button>
+     <a href="{{path('app_login')}}" class="nav-link">j'ai un compte déjà</a>
+  </div>
+  <div class="or">OR</div>
+</div>
+
+
+
+
+
+
+{% block javascripts %}
+<script src="//code.jquery.com/jquery.js"></script>
+    <!-- Load Flashy default JavaScript -->
+    <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+    <!-- Include Flashy default partial -->
+ 
+        {% endblock %}   
+           {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+{% extends 'home/index.html.twig' %}
+
+{% block title %}Votre panier{% endblock %}
+
+{% block body %}
+<section class="bg-light p-3">
+    <h1>Votre panier</h1>
+
+</section>
+
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+
+                <table border="1">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in items %}
+                            <tr>
+
+                                <td class="text-end">{{ item.produit.nom }} </td>
+                                <td>{{ item.produit.prix }} TD</td>
+                                <td>{{ item.quantity }}</td>
+
+
+                                <td>
+
+
+
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5" class="text-center">Votre panier est vide</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="3">Total</td>
+                            <td class="text-end">{{ total }} TD</td>
+                            <td>
+                                <a class="btn btn-success" href="{{ path('app_prod_index') }}">back to list</a>
+
+
+
+
+                                <a class="btn btn-success" href="{{ path("comm_all",{'total': total}) }}">Commander</a>
+
+
+
+
+
+                                <a href="{{path("cart_remove_all")}}" class="btn btn-danger">vider panier
+                                    <i class="bi bi-cart-x"></i>
+                                </a>
+
+
+
+                                <div>
+
+                                </div>
+
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+
+
+                    {% endblock %}

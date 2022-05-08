@@ -1,0 +1,96 @@
+{% extends 'admin/NavDash.html.twig' %}
+
+
+{% block body %}
+<link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+             <nav class="navbar navbar-light bg-light">
+                {% if formsearch is defined %}
+                <div align="Right">
+                    {{ form_start(formsearch,{'attr': {'novalidate': 'novalidate'}} ) }}
+                    {{ form_widget(formsearch.nom,{'class':'form-control'},)}}
+                    {{ form_widget(formsearch.Rechercher, {'attr': {'placeholder': 'REGISTER','class':'btn btn-primary' }})}}
+                    {{ form_end(formsearch) }}
+                </div>
+                {% endif %}
+
+    </nav>
+     <a href="{{path('order_by_name')}}">Trier selon nombre de points</a>
+ 
+  
+ 
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Liste des Equipes</li>
+             
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+
+        <div class="col-lg-14 ">
+
+            <div class="card">
+                <div class="card-body">
+                    <a href="{{ path('display_equipe') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+
+                 
+                    <a class="btn btn-primary" href="{{ path('addEquipe')}}" style="background-color: #3f6791; color: white; margin-left:80%" >Ajouter un equipe</a>
+                    <a  href="{{ path('List_equipe') }}">Imprimer</a>
+
+                    <!-- Table with stripped rows -->
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>     <th>Nom</th>
+                            <th>Nombre des points</th>
+                            
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in equipe %}
+                            <tr>
+                                <td>{{ a.nom }}</td>
+                                <td>{{ a.classement }}                                              
+                                    <div  style="display: grid;"> <a class="btn btn-primary" href="{{ path('ajouter3',{'id':a.id}) }}" style="background-color: #00ff6e; color: white; margin-left:80%" >V</a>
+                                        <a class="btn btn-primary" href="{{ path('null3',{'id':a.id}) }}" style="background-color: #83878c; color: white; margin-left:80%" >D</a>
+                                        <a class="btn btn-primary" href="{{ path('sub3',{'id':a.id}) }}" style="background-color: #f70606; color: white; margin-left:80%" >L</a> 
+
+                                    </td>
+                                <td>
+                                    <a class="btn btn-primary" href="{{ path('modifEquipe',{'id':a.id}) }}">Modifier</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" href="{{ path('supp_equipe',{'id':a.id}) }}">Supprimer</a>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+
+                        </tbody>
+                        
+                    </table>
+                    {{ knp_pagination_render(equipe) }}
+
+                    <!-- End small tables -->
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+    {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+
+{% endblock %}

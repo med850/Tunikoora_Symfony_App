@@ -1,0 +1,120 @@
+{% extends 'admin/NavDash.html.twig' %}
+
+
+{% block title %}Gestion Utilisateurs{% endblock %}
+
+{% block body %}
+
+
+
+
+
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+             <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Recherche" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
+     </form>
+
+    </nav>
+     <a href="{{path('order_users_by_name')}}">Aa - Zz</a>
+ 
+  
+ 
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Liste des Utilisateurs</li>
+             
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>Cin</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Telephone</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                     <th>Action</th>
+
+                  </tr>
+                  </thead>
+                   {% for user in users %}
+                  <tbody>
+                  <tr>
+                   <td>{{ user.cin}}</td>
+                   <td>{{ user.username}}</td>
+                   <td>{{ user.prenom}}</td>
+                   <td>{{ user.tel}}</td>
+                  <td>{{ user.email}}</td>
+                  <td>{% for role in user.roles %}
+                    {% if  role == "ROLE_USER" %}
+                        Utilisateur
+                    {% elseif role == "ROLE_ADMIN" %}
+                        Administrateur / 
+                    {% endif %}
+                    {% endfor %}
+                  
+                  </td>
+                   <td><a href="{{path('modify_user', {'id':user.id})}}" class="btn btn-outline-warning">Modifier</a>
+                    <a href="{{path('delete_user', {'id':user.id})}}" class="btn btn-outline-danger">Supprimer</a>
+                    {% if user.block == null %}
+                     <a href="{{path('block', {'id':user.id})}}" class="btn btn-outline-danger">Bloquer</a>
+                     
+                    </td>
+                    {% endif %}
+                   
+
+
+                  </tr>
+                 
+                  </tbody>
+                  {% endfor %}
+                </table>
+                
+
+              </div>
+
+              <div class="navigation">
+              {{ knp_pagination_render(users) }}
+                </div>
+
+              <!-- /.card-body --><section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+            </div>
+            <!-- /.card -->
+
+          
+
+
+
+
+
+{% endblock %}
+
+

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+               {% block stylesheets %}
+           
+
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+  <link rel="stylesheet" href="{{asset("assets/css/bootstrap/bootstrap.css")}}">
+  <link rel="stylesheet" href="{{asset("assets/css/jquery-ui.css")}}">
+  <link rel="stylesheet" href="{{asset("assets/css/owl.carousel.min.css")}}">
+  <link rel="stylesheet" href="{{asset("assets/css/owl.theme.default.min.css")}}">
+  <link rel="stylesheet" href="{{asset("assets/css/owl.theme.default.min.css")}}">
+
+  <link rel="stylesheet" href="{{asset("assets/css/jquery.fancybox.min.css")}}">
+
+  <link rel="stylesheet" href="{{asset("assets/css/bootstrap-datepicker.css")}}">
+
+  <link rel="stylesheet" href="{{asset("assets/fonts/flaticon/font/flaticon.css")}}">
+
+  <link rel="stylesheet" href="{{asset("assets/css/aos.css")}}">
+
+  <link rel="stylesheet" href="{{asset("assets/css/style.css")}}">
+
+
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+      Weglot.initialize({
+          api_key: 'wg_57f6c3f52c348140124c9e00af5a720e6'
+      });
+  </script>
+
+    <link rel="stylesheet" href="{{ asset("bundles/mercuryseriesflashy/css/flashy.css") }}">
+
+        {% endblock %}
+    </head>
+    <body style="background-color:#017bf5;">
+
+          <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+
+    <header class="site-navbar py-4" role="banner">
+
+      <div class="container">
+        <div class="d-flex align-items-center">
+          <div class="site-logo">
+            <a href="index.html">
+              <img src="{{asset("adminAssets/img/tunikoora.png")}}" alt="Logo" height="120" width="120">
+            </a>
+          </div>
+          <div class="ml-auto">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                <li {% if app.request.get('_route') == 'app_home' %} class="active"{% endif %}><a href="{{path('app_home')}}" class="nav-link">Home</a></li>
+               
+
+                <li><a href="display" class="nav-link">Blog</a></li>
+
+
+              
+                <li><a href="{{path('app_prod_index')}}" class="nav-link">produit</a></li>
+                <li  {% if app.request.get('_route') == 'app_tck_index' %} class="active"{% endif %}><a href="{{path('app_tck_index')}}" class="nav-link">ticket</a></li>
+
+                
+                  {% if is_granted('ROLE_ADMIN') %}
+                  <li><a href="{{path('app_dashboard')}}" class="nav-link">Dash</a></li>
+                  <li><a href="{{ path('view_joueur') }}" class="nav-link">Joueurs</a></li>
+
+                  {% endif %}
+                   {%if not app.user%}
+                   <li><a href="{{ path('view_joueur') }}" class="nav-link">Joueurs</a></li>
+
+                 <li><a href="{{path('app_register')}}" class="nav-link">Inscription</a></li>
+                  <li><a href="{{path('app_login')}}" class="nav-link">Connexion</a></li>
+                  {% else %}
+                   <li{% if app.request.get('_route') == 'app_profile' %} class="active"{% endif %}><a href="{{path('app_profile')}}" class="nav-link">Profile</a></li>
+
+                    <li><a href="{{path('app_message')}}" class="nav-link">Msg</a></li>
+                 
+                  <li><a href="{{path('app_logout')}}" class="nav-link">Déconnexion</a></li>
+
+                  
+
+                  {% endif %}
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+    </header>
+
+   
+
+
+   
+  
+
+  </div>
+  <!-- .site-wrap -->
+
+        
+
+
+        {% block body %}
+        {% endblock %}
+
+
+
+
+
+          {% block javascripts %}
+            <script src="{{asset("assets/js/jquery-3.3.1.min.js")}}"></script>
+  <script src="{{asset("assets/js/jquery-migrate-3.0.1.min.js")}}"></script>
+  <script src="{{asset("assets/js/jquery-ui.js")}}"></script>
+  <script src="{{asset("assets/js/popper.min.js")}}"></script>
+  <script src="{{asset("assets/js/bootstrap.min.js")}}"></script>
+  <script src="{{asset("assets/js/owl.carousel.min.js")}}"></script>
+  <script src="{{asset("assets/js/jquery.stellar.min.js")}}"></script>
+  <script src="{{asset("assets/js/jquery.countdown.min.js")}}"></script>
+  <script src="{{asset("assets/js/bootstrap-datepicker.min.js")}}"></script>
+  <script src="{{asset("assets/js/jquery.easing.1.3.js")}}"></script>
+  <script src="{{asset("assets/js/aos.js")}}"></script>
+  <script src="{{asset("assets/js/jquery.fancybox.min.js")}}"></script>
+  <script src="{{asset("assets/js/jquery.sticky.js")}}"></script>
+  <script src="{{asset("assets/js/jquery.mb.YTPlayer.min.js")}}"></script>
+
+
+  <script src="{{asset("assets/js/main.js")}}"></script>
+
+
+<script src="//code.jquery.com/jquery.js"></script>
+    <!-- Load Flashy default JavaScript -->
+    <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+    <!-- Include Flashy default partial -->
+ 
+        {% endblock %}   
+           {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+      
+
+
+    </body>
+</html>
