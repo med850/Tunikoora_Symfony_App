@@ -2,16 +2,88 @@
 
 
 {% block body %}
+<style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      .chartMenu {
+        width: 100vw;
+        height: 40px;
+        background: #1A1A1A;
+        color: rgba(255, 26, 104, 1);
+      }
+      .chartMenu p {
+        padding: 10px;
+        font-size: 20px;
+      }
+      .chartCard {
+        width: 100vw;
+        height: calc(100vh - 40px);
+        background: rgba(255, 26, 104, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chartBox {
+        width: 700px;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px rgba(255, 26, 104, 1);
+        background: white;
+      }
+    </style>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+             <nav class="navbar navbar-light bg-light">
+                
+                {% if formsearch is defined %}
+                <div align="Right">
+                    {{ form_start(formsearch,{'attr': {'novalidate': 'novalidate'}} ) }}
+                    {{ form_widget(formsearch.nom,{'class':'form-control'},)}}
+                    {{ form_widget(formsearch.Rechercher, {'attr': {'placeholder': 'REGISTER','class':'btn btn-primary' }})}}
+                    {{ form_end(formsearch) }}
+                </div>
+                {% endif %}
+    </nav>
+    
 
-    <div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+   
+    </script>
+     <a href="{{path('order_by_name1')}}">Trier selon nom</a><br>
 
-        <div class="col-lg-6">
+     <a href="{{path('chartjs')}}">Chart</a>
+
+     
+
+ 
+  
+ 
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Liste des Joueurs</li>
+             
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+
+        <div class="col-lg-14">
 
             <div class="card">
                 <div class="card-body">
                     <a href="{{ path('display_equipe') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
-                    <h5 class="card-title">Liste des equipes</h5>
-
+                    <a class="btn btn-primary" href="{{ path('addJoueur')}}" style="background-color: #3f6791; color: white; margin-left:80%" >Ajouter un joueur</a>
+                    <a  href="{{ path('List_joueur') }}">Imprimer</a>
                     <!-- Table with stripped rows -->
                     <table class="table table-striped">
                         <thead>
@@ -19,7 +91,12 @@
                             <th>prénom</th>
                             <th>poste</th>
                             <th>téléphone</th>
+                            <th>image</th>
+                            <th>Nombre de buts</th>
+
                             <th>equipe</th>
+
+                            
                             
                         </tr>
                         </thead>
@@ -30,7 +107,10 @@
                                 <td>{{ a.prenom }}</td>
                                 <td>{{ a.poste}}</td>
                                 <td>{{ a.tel }}</td>
+                                <td style="color: #EEEEEE"><img src="{{asset('/adminAssets/img/')~ a.image  }}" alt="" style="width: 200px; height: 150px"></td>                                  
+                                <td>{{ a.nb_but }}</td>
                                 <td>{{ a.equipe }}</td>
+                                
                                 <td>
                                     <a class="btn btn-primary" href="{{ path('modifJoueur',{'id':a.id}) }}">Modifier</a>
                                 </td>
@@ -43,6 +123,7 @@
 
                         </tbody>
                     </table>
+                    {{ knp_pagination_render(joueur) }}
                     <!-- End small tables -->
 
                 </div>

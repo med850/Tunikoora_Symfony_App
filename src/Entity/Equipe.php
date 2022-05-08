@@ -10,6 +10,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="equipe")
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\EquipeRepository")
+
  */
 class Equipe
 {
@@ -25,7 +27,7 @@ class Equipe
     /**
      * @var string
      * @Assert\NotBlank(message="Champ vide")
-     * @Assert\NotNull(message=" nom doit etre non vide")
+     
      * @Assert\Length(
      *      min = 2,
      *      minMessage=" Entrer un nom au mini de 2 caracteres"
@@ -38,10 +40,9 @@ class Equipe
 
     /**
      * @var int
-     * @Assert\Positive
      * @Assert\NotBlank(message="classement doit etre non vide")
      * @Assert\Length(
-     *      min = 1,
+     *      min = 0,
      *      max = 25,
      *      minMessage = "doit etre >=1 ",
      *      maxMessage = "doit etre <=25" )
@@ -79,6 +80,9 @@ class Equipe
 
         return $this;
     }
-
+    public function __toString():string 
+    {
+        return $this->getNom();
+    }
 
 }

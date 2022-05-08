@@ -45,7 +45,9 @@
         "symfonycasts/verify-email-bundle": "^1.10",
         "tattali/calendar-bundle": "^1.2",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "twilio/sdk": "^6.37",
+        "vangrg/profanity-bundle": "^1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",

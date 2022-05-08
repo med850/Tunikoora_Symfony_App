@@ -1,4 +1,7 @@
 {
+    "composer/package-versions-deprecated": {
+        "version": "1.11.99.5"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -682,6 +685,12 @@
     },
     "twig/twig": {
         "version": "v3.3.8"
+    },
+    "twilio/sdk": {
+        "version": "6.37.0"
+    },
+    "vangrg/profanity-bundle": {
+        "version": "v1.1.6"
     },
     "voku/portable-ascii": {
         "version": "1.6.1"

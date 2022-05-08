@@ -1,0 +1,92 @@
+{% extends 'admin/NavDash.html.twig' %}
+
+
+{% block body %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+             <nav class="navbar navbar-light bg-light">
+                <div align="Right">
+                    {{ form_start(formsearch,{'attr': {'novalidate': 'novalidate'}} ) }}
+                    {{ form_widget(formsearch.nom,{'class':'form-control'},)}}
+                    {{ form_widget(formsearch.Search, {'attr': {'placeholder': 'REGISTER','class':'btn btn-primary' }})}}
+                    {{ form_end(formsearch) }}
+                </div>
+    </nav>
+     <a href="{{path('order_by_name1')}}">Aa - Zz</a>
+ 
+  
+ 
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Liste des Joueurs</li>
+             
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+
+        <div class="col-lg-14">
+
+            <div class="card">
+                <div class="card-body">
+                    <a href="{{ path('display_equipe') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+                    <a class="btn btn-primary" href="{{ path('addJoueur')}}" style="background-color: #3f6791; color: white; margin-left:80%" >Ajouter un joueur</a>
+                    <a  href="{{ path('List_joueur') }}">Imprimer</a>
+                    <!-- Table with stripped rows -->
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>     <th>Nom</th>
+                            <th>prénom</th>
+                            <th>poste</th>
+                            <th>téléphone</th>
+                            <th>image</th>
+                            <th>Nombre de buts</th>
+
+                            <th>equipe</th>
+
+                            
+                            
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in joueur %}
+                            <tr>
+                                <td>{{ a.nom }}</td>
+                                <td>{{ a.prenom }}</td>
+                                <td>{{ a.poste}}</td>
+                                <td>{{ a.tel }}</td>
+                                <td style="color: #EEEEEE"><img src="{{asset('/adminAssets/img/')~ a.image  }}" alt="" style="width: 200px; height: 150px"></td>                                  
+                                <td>{{ a.nb_but }}</td>
+                                <td>{{ a.equipe }}</td>
+                                
+                                <td>
+                                    <a class="btn btn-primary" href="{{ path('modifJoueur',{'id':a.id}) }}">Modifier</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" href="{{ path('supp_joueur',{'id':a.id}) }}">Supprimer</a>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                    <!-- End small tables -->
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+{% endblock %}
