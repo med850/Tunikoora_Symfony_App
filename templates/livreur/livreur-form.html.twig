@@ -1,0 +1,46 @@
+{% extends 'admin/NavDash.html.twig' %}
+    {% block body %}
+        <div style="display:flex;align-items: center;justify-content: center;margin-top: 150px;">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Modifier livreur   <small>Session Admin</small></h3>
+                    {{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form id="quickForm" novalidate="novalidate">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputReference1">Nom</label>
+                            {{ form_widget(form.nom,{'attr':{'class':'form-control'}}) }}
+                            {{ form_errors(form.nom,{'attr':{'class':'form-control'}}) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputLocalisation1">Prenom</label>
+                            {{ form_widget(form.prenom,{'attr':{'class':'form-control'}}) }}
+                            {{ form_errors(form.prenom,{'attr':{'class':'form-control'}}) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEtat1">Télephone</label>
+                            {{ form_widget(form.tel,{'attr':{'class':'form-control'}}) }}
+                            {{ form_errors(form.tel,{'attr':{'class':'form-control'}}) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUserID1">Livraison</label>
+                            {{ form_widget(form.livraison,{'attr':{'class':'form-control'}}) }}
+                            {{ form_errors(form.livraison,{'attr':{'class':'form-control'}}) }}
+                        </div>
+
+
+
+
+                    </div>
+                    <!-- /.card-body -->
+
+                    {{ form_end(form) }}
+                </form>
+            </div>
+            <!-- /.card -->
+        </div>
+    {% endblock %}

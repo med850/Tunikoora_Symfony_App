@@ -8,7 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
  * Livraison
  *
  * @ORM\Table(name="livraison", indexes={@ORM\Index(name="fk_livraison_user", columns={"user_id"})})
- * @ORM\Entity
+ *  @ORM\Entity(repositoryClass="App\Repository\LivraisonRepository")
+ *
  */
 class Livraison
 {
@@ -43,7 +44,7 @@ class Livraison
     private $etat;
 
     /**
-     * @var \Users
+     * @var Users
      *
      * @ORM\ManyToOne(targetEntity="Users")
      * @ORM\JoinColumns({
@@ -51,6 +52,13 @@ class Livraison
      * })
      */
     private $user;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="datesortie", type="string")
+     */
+    private $datesortie;
 
     public function getId(): ?int
     {
@@ -105,5 +113,26 @@ class Livraison
         return $this;
     }
 
+    public function getDatesortie(): ?string
+    {
+        return $this->datesortie;
+    }
+
+    public function setDatesortie(?string $datesortie): self
+    {
+        $this->$datesortie = $datesortie;
+
+        return $this;
+    }
+
+    /**
+     * Transform to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getId();
+    }
 
 }
