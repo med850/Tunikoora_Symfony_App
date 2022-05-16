@@ -2,22 +2,24 @@
 
 namespace App\Controller;
 
-use App\Entity\Joueur;
-use App\Form\JoueurFormType;
-use App\Form\SearchType;
-
-use App\Repository\JoueurRepository;
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Knp\Component\Pager\PaginatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-
-
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use App\Entity\Joueur;
+
+use App\Form\SearchType;
+
+use App\Form\JoueurFormType;
+use App\Form\SearchType2;
+use App\Repository\JoueurRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+
+use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class JoueurController extends AbstractController
 {
@@ -169,15 +171,15 @@ class JoueurController extends AbstractController
 
      * @Route("/display_joueur", name="display_joueur")
      */
-    public function displayJoueur(PaginatorInterface $paginator,JoueurRepository $T,Request $request): Response
-    {$donnes= $T->findAll();
+    public function displayJoueur(PaginatorInterface $paginator,JoueurRepository $T,Request $request, EntityManagerInterface $em): Response
+    {$donnes= $em->getRepository(Joueur::class)->findAll();
     
         $joueurs = $paginator->paginate(
         $donnes,
         $request->query->getInt('page',1),
         2
     );
-    $formsearchI = $this->createForm(SearchType::class);
+    $formsearchI = $this->createForm(SearchType2::class);
         $formsearchI->handleRequest($request);
         if ($formsearchI->isSubmitted()) {
             $nom = $formsearchI->getData();

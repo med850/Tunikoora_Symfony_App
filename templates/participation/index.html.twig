@@ -121,7 +121,7 @@
 <script>
 let map;
 
-function initMap() {
+ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 8,
@@ -146,7 +146,7 @@ function details(parts,id)
   allowfullscreen
   referrerpolicy="no-referrer-when-downgrade"
   src='https://www.google.com/maps/embed/v1/place?key=AIzaSyAdxGJpqa5_9CdQ4zUlWw2XazA96mRRxpw
-    &q=Space+Needle,${currentPart.stade.adresse}' ></iframe>`)
+    &q=Space+Needle,P7XF+53W ' ></iframe>`)
   
   $(".tour").html(currentPart.match.tour)
   $(".equipe").html(currentPart.equipe.nom)
@@ -166,7 +166,7 @@ console.log(diffDays)
 
 
 
-</script>
+</script> 
 <script src="{{asset("bundles/mercuryseriesflashy/js/flashy.js")}}">
 </script>
 {% endblock %}

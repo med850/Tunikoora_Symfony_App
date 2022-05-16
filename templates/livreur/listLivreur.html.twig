@@ -1,0 +1,98 @@
+{% extends 'admin/NavDash.html.twig' %}
+{% block title %}Livreurs{% endblock %}
+
+
+
+{% block body %}
+
+
+    <div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+        <div class="col-lg-6">
+        <div class="card">
+             <div class="card-header">
+                    <h3 class="card-title">Recherche avancée  : </h3>
+                    {{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+        </div>
+     <form id="quickForm" novalidate="novalidate">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputReference1">Nom</label>
+                            {{ form_widget(form.nom,{'attr':{'class':'form-control'}}) }}
+                            {{ form_errors(form.nom,{'attr':{'class':'form-control'}}) }}
+                        </div>
+                        <div class="form-group">
+                             <button type="submit" class="btn btn-success">Rechercher</button>
+                        </div>
+                      {{ form_end(form) }}
+                       <table class="table table-striped">
+                        <thead>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Téléphone</th>
+                        <th>Livraison</th>
+
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                        </thead>
+                        <tbody>
+                        {% for article in articles %}
+                            <tr>
+                                <td>{{ article.id }}</td>
+                                <td>{{ article.nom }}</td>
+                                <td>{{ article.prenom }}</td>
+                                <td>{{ article.tel }}</td>
+                                <td>{{ article.livraison }}</td>
+
+                                <td><a href="{{ path('modifLivreur', {'id': article.id}) }}">Modifier</a></td>
+                                <td><a href="{{ path('supp_livreur', {'id': article.id}) }}">Supprimer</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    </div>
+            <div class="card">
+                <div class="card-body">
+                    <a href="{{ path('display_livreur') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+                    <h3 class="card-title">Liste des Livreurs &nbsp;&nbsp;&nbsp;</h3>
+                    <p><a href="{{ path('addLivreur') }}">Ajouter un Livreur</a></p>
+
+                    <table class="table table-striped">
+                        <thead>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Téléphone</th>
+                        <th>Livraison</th>
+
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                        </thead>
+                        <tbody>
+                        {% for livreur in livreurs %}
+                            <tr>
+                                <td>{{ livreur.id }}</td>
+                                <td>{{ livreur.nom }}</td>
+                                <td>{{ livreur.prenom }}</td>
+                                <td>{{ livreur.tel }}</td>
+                                <td>{{ livreur.livraison }}</td>
+
+                                <td><a href="{{ path('modifLivreur', {'id': livreur.id}) }}">Modifier</a></td>
+                                <td><a href="{{ path('supp_livreur', {'id': livreur.id}) }}">Supprimer</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+{% endblock %}

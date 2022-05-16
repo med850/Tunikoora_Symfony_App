@@ -6,7 +6,7 @@ use App\Entity\Equipe;
 use App\Form\EquipeFormType;
 use App\Repository\EquipeRepository;
 use App\Form\SearchType;
-
+use App\Form\SearchType2;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -169,7 +169,7 @@ class EquipeController extends AbstractController
         $request->query->getInt('page',1),
         2
     );
-    $formsearchI = $this->createForm(SearchType::class);
+    $formsearchI = $this->createForm(SearchType2::class);
         $formsearchI->handleRequest($request);
         if ($formsearchI->isSubmitted()) {
             $nom = $formsearchI->getData();

@@ -18,9 +18,9 @@ class ParticipationController extends AbstractController
      */
     public function index(Request $request,EntityManagerInterface $em,SerializerInterface $serializer): Response
     {
-        $repo = $em->getRepository(Participation::class);
+      //  $repo = $em->getRepository(Participation::class);
         $participation = new Participation();
-        $participations = $repo->findAll();
+        $participations = $em->getRepository(Participation::class)->findAll();
         $form = $this->createForm(ParticipationType::class, $participation);
         $form->handleRequest($request);
         $error = null;
@@ -35,8 +35,8 @@ class ParticipationController extends AbstractController
 
             }
             $date =$participation->getDate();
-            $p1 = $repo->findOneBy(["date"=>$date, "equipe" => $participation->getEquipe()->getId()]);
-            $p2 = $repo->findOneBy(["date"=>$date, "equipe2" => $participation->getEquipe2()->getId()]);
+            $p1 = $em->getRepository(Participation::class)->findOneBy(["date"=>$date, "equipe" => $participation->getEquipe()->getId()]);
+            $p2 = $em->getRepository(Participation::class)->findOneBy(["date"=>$date, "equipe2" => $participation->getEquipe2()->getId()]);
             if ($p1 != null || $p2!= null)
             {
                 $error = new FormError("can't have the team playing two matches in the same day");

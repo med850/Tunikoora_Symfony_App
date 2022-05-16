@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Users;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * Produit
@@ -20,6 +22,7 @@ class Produit
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     *  @Groups("post:read")
      */
     private $id;
 
@@ -27,6 +30,7 @@ class Produit
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=30, nullable=false)
+      * @Groups("post:read")
      */
     private $nom;
 
@@ -34,6 +38,7 @@ class Produit
      * @var int
      *
      * @ORM\Column(name="prix", type="integer", nullable=true)
+     *  @Groups("post:read")
      */
     private $prix;
 
@@ -47,7 +52,7 @@ class Produit
      *     message="The value {{ value }} is not a valid {{ type }}."
      * )
      * @Assert\Positive
-     *
+     * @Groups("post:read")
      *
      */
     private $qte;
@@ -56,6 +61,7 @@ class Produit
      * @var string
      *
      * @ORM\Column(name="description", type="text", length=65535, nullable=false)
+     *  @Groups("post:read")
      */
     private $description;
 
@@ -65,6 +71,7 @@ class Produit
      * @ORM\Column(name="image", type="string", length=50, nullable=false)
      * Assert\NoBlank(message="Please upload image")
      * Assert\File(mimeTypes={"image/jpeg"})
+     *  @Groups("post:read")
      */
     private $image;
 
@@ -162,4 +169,3 @@ class Produit
     }
 
 }
-

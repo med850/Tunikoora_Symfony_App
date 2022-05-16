@@ -32,16 +32,8 @@ class Participation
      */
     private $match;
 
-    /**
-     * @ORM\Column(name="longitude", type="float", nullable=true)
-     */
-    private $longitude;
-
-    
-    /**
-     * @ORM\Column(name="latitude", type="float", nullable=true)
-     */
-    private $latitude;
+  
+ 
 
     /**
      * @var \Equipe
@@ -81,7 +73,7 @@ class Participation
         $this->date = $date;
         return $this;
     }
-    public function getMatch(): ?Matchtb
+    public function getMatch()
     {
         return $this->match;
     }
@@ -92,29 +84,11 @@ class Participation
 
         return $this;
     }
-    public function getLatitude(): ?float
-    {
-        return $this->latitude;
-    }
+   
 
-    public function setLatitude(?float $latitude): self
-    {
-        $this->latitude = $latitude;
-        return $this;
-    }
+    
 
-    public function getLongitude(): ?float
-    {
-        return $this->longitude;
-    }
-
-    public function setLongitude(?float $longitude): self
-    {
-        $this->longitude = $longitude;
-        return $this;
-    }
-
-    public function getEquipe(): ?Equipe
+    public function getEquipe()
     {
         return $this->equipe;
     }
@@ -126,7 +100,7 @@ class Participation
         return $this;
     }
 
-        public function getEquipe2(): ?Equipe
+        public function getEquipe2()
     {
         return $this->equipe2;
     }

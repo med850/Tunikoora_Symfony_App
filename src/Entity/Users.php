@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
 * Users
@@ -31,6 +32,7 @@ $this->recived = new ArrayCollection();
 * @ORM\Column(name="id", type="integer", nullable=false)
 * @ORM\Id
 * @ORM\GeneratedValue(strategy="IDENTITY")
+* @Groups("post:read")
 */
 private $id;
 /**
@@ -39,6 +41,7 @@ private $id;
 * @ORM\Column(name="cin", type="integer", nullable=false)
 * @Assert\NotBlank(message="Champ vide")
 * @Assert\Positive(message="Nombre négatif")
+* @Groups("post:read")
 */
 private $cin;
 
@@ -47,6 +50,7 @@ private $cin;
 *
 * @ORM\Column(name="prenom", type="string", length=30, nullable=false)
 * @Assert\NotBlank(message="Champ vide")
+* @Groups("post:read")
 */
 private $prenom;
 /**
@@ -55,6 +59,7 @@ private $prenom;
 * @ORM\Column(name="tel", type="integer", nullable=false)
 * @Assert\NotBlank(message="Champ vide")
 * @Assert\Positive(message="Nombre négatif")
+* @Groups("post:read")
 */
 private $tel;
 /**
@@ -65,6 +70,7 @@ private $tel;
 * message = "email '{{ value }}' n'est pas valide."
 * )
 * @Assert\NotBlank(message="Champ vide")
+* @Groups("post:read")
 */
 private $email;
 /**
@@ -87,6 +93,7 @@ private $repeatpassword;
 private $typeuser;
 /**
 * @ORM\Column(type="string", length=20)
+* @Groups("post:read")
 */
 private $username;
 /**

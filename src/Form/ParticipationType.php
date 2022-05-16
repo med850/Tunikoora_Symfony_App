@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Equipe;
 use App\Entity\Matchtb;
-use App\Entity\Stade;
+
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -42,13 +42,7 @@ class ParticipationType extends AbstractType
                 },
                 'placeholder' => 'Equipe2',
             ))
-            ->add('stade', EntityType::class, array(
-                'class' => Stade::class,
-                'choice_label' => function ($stade) {
-                    return $stade->getNom();
-                },
-                'placeholder' => 'stade',
-            ))
+          
 
             ->add('date', DateType::class,['input'  => 'datetime_immutable','widget'=>'choice'
             ])

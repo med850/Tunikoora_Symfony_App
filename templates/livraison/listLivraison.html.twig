@@ -1,0 +1,82 @@
+{% extends 'admin/NavDash.html.twig' %}
+{% block title %}Hello LivraisonController!{% endblock %}
+
+
+
+{% block body %}
+
+
+    <div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+        <div class="col-lg-6">
+        <div class="card">
+             <div class="card-header">
+                    <h3 class="card-title">Recherche : </h3>
+                    {{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+        </div>
+     <form id="quickForm" novalidate="novalidate">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputReference1">Reference</label>
+                            {{ form_widget(form.nom,{'attr':{'class':'form-control'}}) }}
+                            {{ form_errors(form.nom,{'attr':{'class':'form-control'}}) }}
+                        </div>
+                        <div class="form-group">
+                             <button type="submit" class="btn btn-success">Rechercher</button>
+                        </div>
+                      {{ form_end(form) }}
+
+                    </div>
+            <div class="card">
+                <div class="card-body">
+                    <a href="{{ path('display_equipe') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+                    <h3 class="card-title">Liste des livraisons &nbsp;&nbsp;&nbsp;</h3>
+                    <p><a href="{{ path('addLivraison') }}">Ajouter une livraison</a></p>
+
+                    <table class="table table-striped">
+                        <thead>
+                        <th>ID</th>
+                        <th>Ref</th>
+                        <th>Localisation</th>
+                        <th>état</th>
+                        <th>User</th>
+                        
+
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                        </thead>
+                        <tbody>
+                        {% for livraison in livreurs %}
+                            <tr>
+                                <td>{{ livraison.id }}</td>
+                                <td>{{ livraison.ref }}</td>
+                                <td>{{ livraison.localisation }}</td>
+                                <td>{{ livraison.etat }}</td>
+                                <td>{{ livraison.user }}</td>
+                               
+
+                                <td><a href="{{ path('modifLivraison', {'id': livraison.id}) }}">Modifier</a></td>
+                                <td><a href="{{ path('supp_livraison', {'id': livraison.id}) }}">Supprimer</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <div class="col-lg-10">
+        <div id="calendar"></div>
+    </div>
+
+
+
+    
+{% endblock %}
+

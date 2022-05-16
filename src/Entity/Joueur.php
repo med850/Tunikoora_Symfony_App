@@ -150,7 +150,7 @@ class Joueur
         return $this;
     }
 
-    public function getEquipe(): ?Equipe
+    public function getEquipe()
     {
         return $this->equipe;
     }

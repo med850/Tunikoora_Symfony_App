@@ -16,8 +16,6 @@ class SearchType extends AbstractType
             ->add('titre')
             ->add('search',SubmitType::class)
 
-            ->add('nom')
-            ->add('Rechercher',SubmitType::class)
 
 
         ;

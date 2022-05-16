@@ -51,15 +51,7 @@ class Review
      */
     private $article;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $dateReview;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $author;
+    
 
     public function getId(): ?int
     {
@@ -103,29 +95,9 @@ class Review
         return $this;
     }
 
-    public function getDateReview(): ?\DateTimeInterface
-    {
-        return $this->dateReview;
-    }
+  
 
-    public function setDateReview(?\DateTimeInterface $dateReview): self
-    {
-        $this->dateReview = $dateReview;
-
-        return $this;
-    }
-
-    public function getAuthor(): ?string
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(?string $author): self
-    {
-        $this->author = $author;
-
-        return $this;
-    }
+ 
 
 
 

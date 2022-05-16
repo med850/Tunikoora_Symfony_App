@@ -43,7 +43,7 @@ class Livreur
     private $tel;
 
     /**
-     * @var \Livraison
+     * @var Livraison
      *
      * @ORM\ManyToOne(targetEntity="Livraison")
      * @ORM\JoinColumns({
@@ -107,3 +107,4 @@ class Livreur
 
 
 }
+

@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups; 
+
 
 
 /**
@@ -14,6 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="article", indexes={@ORM\Index(name="fk_article_user", columns={"user_id"})})
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
+ 
  */
 class Article
 {
@@ -23,6 +26,7 @@ class Article
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups("post:read")
      */
     private $id;
 
@@ -35,6 +39,7 @@ class Article
      *
      *     )
      * @ORM\Column(name="titre", type="string", length=30, nullable=false)
+     * @Groups("post:read")
      */
     private $titre;
 
@@ -47,6 +52,7 @@ class Article
      *      minMessage = "doit etre >=7 ",
      *      maxMessage = "doit etre <=100" )
      * @ORM\Column(name="description", type="text", length=65535, nullable=false)
+     * @Groups("post:read")
      */
     private $description;
 

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups; 
 
 /**
  * Equipe
@@ -17,7 +18,7 @@ class Equipe
 {
     /**
      * @var int
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -27,7 +28,8 @@ class Equipe
     /**
      * @var string
      * @Assert\NotBlank(message="Champ vide")
-     
+     * @Groups("post:read")
+
      * @Assert\Length(
      *      min = 2,
      *      minMessage=" Entrer un nom au mini de 2 caracteres"
@@ -40,6 +42,8 @@ class Equipe
 
     /**
      * @var int
+     * @Groups("post:read")
+
      * @Assert\NotBlank(message="classement doit etre non vide")
      * @Assert\Length(
      *      min = 0,

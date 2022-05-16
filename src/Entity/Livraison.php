@@ -3,17 +3,20 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Livraison
  *
  * @ORM\Table(name="livraison", indexes={@ORM\Index(name="fk_livraison_user", columns={"user_id"})})
- * @ORM\Entity
+ *  @ORM\Entity(repositoryClass="App\Repository\LivraisonRepository")
+ *
  */
 class Livraison
 {
     /**
      * @var int
+     * @Groups("post:read")
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -23,27 +26,27 @@ class Livraison
 
     /**
      * @var string
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="ref", type="string", length=10, nullable=false)
      */
     private $ref;
 
     /**
      * @var string
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="localisation", type="string", length=50, nullable=false)
      */
     private $localisation;
 
     /**
      * @var string
-     *
+     * @Groups("post:read")
      * @ORM\Column(name="etat", type="string", length=10, nullable=false)
      */
     private $etat;
 
     /**
-     * @var \Users
+     * @var Users
      *
      * @ORM\ManyToOne(targetEntity="Users")
      * @ORM\JoinColumns({
@@ -51,6 +54,13 @@ class Livraison
      * })
      */
     private $user;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="datesortie", type="string")
+     */
+    private $datesortie;
 
     public function getId(): ?int
     {
@@ -105,5 +115,26 @@ class Livraison
         return $this;
     }
 
+    public function getDatesortie(): ?string
+    {
+        return $this->datesortie;
+    }
+
+    public function setDatesortie(?string $datesortie): self
+    {
+        $this->$datesortie = $datesortie;
+
+        return $this;
+    }
+
+    /**
+     * Transform to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getId();
+    }
 
 }
